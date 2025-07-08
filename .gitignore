@@ -1,0 +1,76 @@
+# Xcode
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xcscmblueprint
+
+# SwiftPM
+.build/
+Package.resolved
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# macOS
+.DS_Store
+
+# User settings
+*.swp
+*.swo
+*.xcuserstate
+
+# Archives
+*.xcarchive
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# AppCode
+.idea/
+*.iml
+
+# Other
+*.moved-aside
+*.xcuserdatad
+*.orig
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.app
+*.log
+*.tmp
+*.temp
+*.orig
+*.patch
+*.rej
+*.bin
+*.bak
+*.backup
+*.swp
+*.swo
+*.tmp
+*.temp
+*.log
+*.lock
+*.xcuserstate
+*.xcworkspace/xcuserdata/
