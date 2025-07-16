@@ -1,17 +1,12 @@
 import SwiftUI
 import AppKit
 
-// Entry point of the IPA Photogrammetry macOS application.
 @main
 struct IPAPhotogrammetryApp: App {
-    
-    // Manages the localization/internationalization of the app.
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) private var scenePhase
     @StateObject private var languageManager = LanguageManager()
-    
-    //Manages settings
     @StateObject var settings = SettingsManager()
-    
-    // Instanciation des ViewModels persistants pour chaque module
     @StateObject private var measureViewModel = MeasureViewModel()
     @StateObject private var photogrammetryViewModel = PhotogrammetryViewModel()
     @StateObject private var objScalerViewModel = OBJScalerViewModel()
@@ -20,10 +15,9 @@ struct IPAPhotogrammetryApp: App {
     @StateObject private var dataverseViewModel = DataverseViewModel()
     @StateObject private var folderStructureViewModel = FolderStructureViewModel()
     @StateObject private var boneFolderViewModel = BoneFolderViewModel()
-    
+
     var body: some Scene {
         WindowGroup {
-            // Inject all ViewModels into the environment so they can be accessed throughout the UI
             ContentView()
                 .environmentObject(languageManager)
                 .environmentObject(measureViewModel)
@@ -36,9 +30,26 @@ struct IPAPhotogrammetryApp: App {
                 .environmentObject(boneFolderViewModel)
                 .environmentObject(settings)
         }
+        .onChange(of: scenePhase) { newPhase, _ in
+            if newPhase == .background {
+                cleanupTempDirectory()
+            }
+        }
         Settings {
             SettingsView()
                 .environmentObject(settings)
+        }
+    }
+
+    private func cleanupTempDirectory() {
+        let tempDir = FileManager.default.temporaryDirectory
+        do {
+            let files = try FileManager.default.contentsOfDirectory(at: tempDir, includingPropertiesForKeys: nil)
+            for file in files {
+                try? FileManager.default.removeItem(at: file)
+            }
+        } catch {
+            print("Erreur suppression fichiers temporaires : \(error)")
         }
     }
 }
