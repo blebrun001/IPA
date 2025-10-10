@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/AppLogoFooter.png" alt="IPA Logo" width="160" />
+  <img src="IPA/Assets.xcassets/AppIcon.appiconset/IPA512.png" alt="IPA Logo" width="140" />
 </p>
 
 # IPA - Integrated Photogrammetry Assistant
