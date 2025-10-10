@@ -17,7 +17,7 @@ struct ReadmeGeneratorTabView: View {
             VStack(spacing: 15) {
                 // Folder selection
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Working folder")
+                    Text(NSLocalizedString("Working folder", comment: "Section title for working folder selection"))
                         .font(.headline)
                     
                     HStack {
@@ -26,10 +26,10 @@ struct ReadmeGeneratorTabView: View {
                                 .foregroundColor(.secondary)
                                 .lineLimit(1)
                         } else {
-                            Text("No folder selected.")
+                            Text(NSLocalizedString("No folder selected.", comment: "Message when no folder is selected"))
                                 .foregroundColor(.gray)
                         }
-                        Button("Choose") {
+                        Button(NSLocalizedString("Choose", comment: "Button to choose folder")) {
                             selectFolderAction()
                         }
                     }
@@ -44,74 +44,74 @@ struct ReadmeGeneratorTabView: View {
                 // Metadata parameters
                 Group {
                     HStack {
-                        Text("Dataset Title:")
+                        Text(NSLocalizedString("Dataset Title:", comment: "Label for dataset title field"))
                         TextField("", text: $viewModel.datasetTitle)
                     }
                     HStack {
-                        Text("Authorship:")
+                        Text(NSLocalizedString("Authorship:", comment: "Label for authorship field"))
                         TextField("", text: $viewModel.authorship)
                     }
                     HStack {
-                        Text("Contact:")
+                        Text(NSLocalizedString("Contact:", comment: "Label for contact field"))
                         TextField("", text: $viewModel.contact)
                     }
                     HStack {
-                        Text("Language:")
+                        Text(NSLocalizedString("Language:", comment: "Label for language field"))
                         Picker("", selection: $viewModel.language) {
                             ForEach(languageOptions, id: \.self) { lang in
-                                Text(lang).tag(lang)
+                                Text(localizedLanguageLabel(for: lang)).tag(lang)
                             }
                         }
                     }
                     HStack {
-                        Text("Specimen:")
+                        (Text(NSLocalizedString("Specimen", comment: "Label for specimen field")) + Text(":"))
                         TextField("", text: $viewModel.specimen)
                     }
                     HStack {
-                        Text("Sex:")
+                        Text(NSLocalizedString("Sex:", comment: "Label for sex field"))
                         Picker("", selection: $viewModel.sex) {
                             ForEach(sexOptions, id: \.self) { option in
-                                Text(option).tag(option)
+                                Text(localizedSexLabel(for: option)).tag(option)
                             }
                         }
                     }
                     HStack {
-                        Text("Life Stage:")
+                        Text(NSLocalizedString("Life Stage:", comment: "Label for life stage field"))
                         Picker("", selection: $viewModel.lifeStage) {
                             ForEach(lifeStageOptions, id: \.self) { option in
-                                Text(option).tag(option)
+                                Text(localizedLifeStageLabel(for: option)).tag(option)
                             }
                         }
                     }
                     HStack {
-                        Text("Number of Scanned Items:")
+                        Text(NSLocalizedString("Number of Scanned Items:", comment: "Label for scanned items field"))
                         TextField("", text: $viewModel.scannedItems)
                     }
                     HStack {
-                        Text("Technique Used:")
+                        Text(NSLocalizedString("Technique Used:", comment: "Label for technique field"))
                         TextField("", text: $viewModel.technique)
                     }
                     HStack {
-                        Text("Licence:")
+                        Text(NSLocalizedString("Licence:", comment: "Label for licence field"))
                         TextField("", text: $viewModel.licence)
                     }
                     HStack {
-                        Text("DOI:")
+                        Text(NSLocalizedString("DOI:", comment: "Label for DOI field"))
                         TextField("", text: $viewModel.doi)
                     }
                     HStack {
-                        Text("Folder Size (Go):")
+                        Text(NSLocalizedString("Folder Size (GB):", comment: "Label for folder size field"))
                         TextField("", text: $viewModel.fileSize)
                     }
                     HStack {
-                        Text("Number of Files:")
+                        Text(NSLocalizedString("Number of Files:", comment: "Label for file count field"))
                         TextField("", text: $viewModel.numFiles)
                     }
                 }
                 
                 // Folder structure description
                 VStack(alignment: .leading) {
-                    Text("Structure:")
+                    Text(NSLocalizedString("Structure:", comment: "Label for structure text area"))
                     TextEditor(text: $viewModel.structure)
                         .frame(height: 80)
                         .border(Color.gray)
@@ -119,13 +119,13 @@ struct ReadmeGeneratorTabView: View {
                 
                 // Comments section
                 VStack(alignment: .leading) {
-                    Text("Comments:")
+                    Text(NSLocalizedString("Comments:", comment: "Label for comments text area"))
                     TextEditor(text: $viewModel.comments)
                         .frame(height: 80)
                         .border(Color.gray)
                 }
                 
-                Button("Generate README") {
+                Button(NSLocalizedString("Generate README", comment: "Button to generate README file")) {
                     generateReadme()
                 }
                 Text(viewModel.resultMessage)
@@ -136,6 +136,51 @@ struct ReadmeGeneratorTabView: View {
     }
     
     // MARK: - Folder selection & drop handling
+
+    private func localizedLanguageLabel(for code: String) -> String {
+        switch code {
+        case "ENG":
+            return NSLocalizedString("English (ENG)", comment: "Language option English")
+        case "CAT":
+            return NSLocalizedString("Catalan (CAT)", comment: "Language option Catalan")
+        case "CAS":
+            return NSLocalizedString("Spanish (CAS)", comment: "Language option Spanish")
+        case "FRA":
+            return NSLocalizedString("French (FRA)", comment: "Language option French")
+        default:
+            return code
+        }
+    }
+
+    private func localizedSexLabel(for value: String) -> String {
+        switch value {
+        case "female":
+            return NSLocalizedString("Female", comment: "Sex option female")
+        case "male":
+            return NSLocalizedString("Male", comment: "Sex option male")
+        case "hermaphrodite":
+            return NSLocalizedString("Hermaphrodite", comment: "Sex option hermaphrodite")
+        case "unknown":
+            return NSLocalizedString("Unknown", comment: "Sex option unknown")
+        default:
+            return value
+        }
+    }
+
+    private func localizedLifeStageLabel(for value: String) -> String {
+        switch value {
+        case "juvenile":
+            return NSLocalizedString("Juvenile", comment: "Life stage option juvenile")
+        case "adult":
+            return NSLocalizedString("Adult", comment: "Life stage option adult")
+        case "senescent":
+            return NSLocalizedString("Senescent", comment: "Life stage option senescent")
+        case "unknown":
+            return NSLocalizedString("Unknown", comment: "Life stage option unknown")
+        default:
+            return value
+        }
+    }
     
     private func dropHandler(providers: [NSItemProvider]) -> Bool {
         for provider in providers {
@@ -216,7 +261,7 @@ struct ReadmeGeneratorTabView: View {
     // Opens a save dialog and generates the README file
     private func generateReadme() {
         guard viewModel.folder != nil else {
-            viewModel.resultMessage = "Select a folder."
+            viewModel.resultMessage = NSLocalizedString("Select a folder.", comment: "Warning when no folder selected")
             return
         }
         let savePanel = NSSavePanel()
@@ -248,9 +293,11 @@ struct ReadmeGeneratorTabView: View {
                                                        structure: viewModel.structure,
                                                        comments: viewModel.comments,
                                                        outputURL: url)
-                    viewModel.resultMessage = "README generated: \(url.path)"
+                    let template = NSLocalizedString("README generated: %@", comment: "Message when README has been generated")
+                    viewModel.resultMessage = String(format: template, url.path)
                 } catch {
-                    viewModel.resultMessage = "Error: \(error.localizedDescription)"
+                    let template = NSLocalizedString("Error: %@", comment: "Template for displaying generation errors")
+                    viewModel.resultMessage = String(format: template, error.localizedDescription)
                 }
             }
         }

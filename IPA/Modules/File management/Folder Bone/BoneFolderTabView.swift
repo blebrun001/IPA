@@ -1,3 +1,6 @@
+//  BoneFolderTabView.swift
+//  UI for generating standardized bone folders with optional photos subdirectories.
+
 import SwiftUI
 import UniformTypeIdentifiers
 
@@ -7,16 +10,16 @@ struct BoneFolderTabView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            GroupBox(label: Text("Working directory")) {
-                Text(photogrammetryVM.mainFolder?.path ?? "no folder selected")
+            GroupBox(label: Text(NSLocalizedString("Working directory", comment: "Section title for working directory"))) {
+                Text(photogrammetryVM.mainFolder?.path ?? NSLocalizedString("No folder selected.", comment: "Message when no folder is selected"))
                     .font(.caption)
                     .foregroundColor(.gray)
                     .padding(4)
             }
 
-            GroupBox(label: Text("Bone name (UBERON)")) {
+            GroupBox(label: Text(NSLocalizedString("Bone name (UBERON)", comment: "Section title for bone name input"))) {
                 VStack(alignment: .leading) {
-                    TextField("type bone name", text: $viewModel.query)
+                    TextField(NSLocalizedString("Type bone name", comment: "Placeholder for bone name input"), text: $viewModel.query)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     if !viewModel.suggestions.isEmpty {
@@ -40,9 +43,9 @@ struct BoneFolderTabView: View {
                 }
             }
 
-            Toggle("Create 'photos' subfolder", isOn: $viewModel.shouldCreatePhotosSubfolder)
+            Toggle(NSLocalizedString("Create 'photos' subfolder", comment: "Toggle to create photos subfolder"), isOn: $viewModel.shouldCreatePhotosSubfolder)
 
-            Button("Create folder") {
+            Button(NSLocalizedString("Create folder", comment: "Button to create bone folder")) {
                 viewModel.createFolder(at: photogrammetryVM.mainFolder)
             }
             .buttonStyle(.borderedProminent)
@@ -58,36 +61,5 @@ struct BoneFolderTabView: View {
         }
         .padding()
         .frame(minWidth: 500)
-    }
-    
-    func importPhotos(to destination: URL, viewModel: BoneFolderViewModel) {
-        let panel = NSOpenPanel()
-        panel.allowsMultipleSelection = true
-        panel.allowedContentTypes = [.image]
-        panel.canChooseDirectories = false
-
-        panel.begin { response in
-            if response == .OK {
-                for url in panel.urls {
-                    let destURL = destination.appendingPathComponent(url.lastPathComponent)
-                    do {
-                        try FileManager.default.copyItem(at: url, to: destURL)
-                        DispatchQueue.main.async {
-                            viewModel.statusMessage = "Importé : \(url.lastPathComponent)"
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                viewModel.statusMessage = ""
-                            }
-                        }
-                    } catch {
-                        DispatchQueue.main.async {
-                            viewModel.statusMessage = "Erreur d'import : \(url.lastPathComponent)"
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                viewModel.statusMessage = ""
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

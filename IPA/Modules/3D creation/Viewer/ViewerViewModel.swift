@@ -62,4 +62,4 @@ class ViewerViewModel: ObservableObject {
             }
         }
     }
-} 
+}

@@ -1,3 +1,6 @@
+//  AppDelegate.swift
+//  Handles cleanup tasks during application termination.
+
 import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -9,7 +12,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 try? FileManager.default.removeItem(at: file)
             }
         } catch {
-            print("Erreur suppression fichiers temporaires : \(error)")
+            print("Failed to remove temporary file: \(error)")
         }
     }
 }

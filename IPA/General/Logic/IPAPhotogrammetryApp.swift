@@ -1,3 +1,6 @@
+//  IPAPhotogrammetryApp.swift
+//  Application entry point that wires up environment objects and manages lifecycle tasks.
+
 import SwiftUI
 import AppKit
 
@@ -9,6 +12,7 @@ struct IPAPhotogrammetryApp: App {
     @StateObject var settings = SettingsManager()
     @StateObject private var measureViewModel = MeasureViewModel()
     @StateObject private var photogrammetryViewModel = PhotogrammetryViewModel()
+    @StateObject private var autoScaleViewModel = AutoScaleViewModel()
     @StateObject private var objScalerViewModel = OBJScalerViewModel()
     @StateObject private var objRenamerViewModel = OBJRenamerViewModel()
     @StateObject private var readmeGeneratorViewModel = ReadmeGeneratorViewModel()
@@ -22,6 +26,7 @@ struct IPAPhotogrammetryApp: App {
                 .environmentObject(languageManager)
                 .environmentObject(measureViewModel)
                 .environmentObject(photogrammetryViewModel)
+                .environmentObject(autoScaleViewModel)
                 .environmentObject(objScalerViewModel)
                 .environmentObject(objRenamerViewModel)
                 .environmentObject(readmeGeneratorViewModel)
@@ -49,7 +54,7 @@ struct IPAPhotogrammetryApp: App {
                 try? FileManager.default.removeItem(at: file)
             }
         } catch {
-            print("Erreur suppression fichiers temporaires : \(error)")
+            print("Failed to remove temporary file: \(error)")
         }
     }
 }
@@ -64,7 +69,7 @@ struct ContentView: View {
                 LaunchScreenView()
                     .onAppear {
                         print("Splash screen started")
-                        // Durée du splash screen : 2 secondes
+                        // Splash screen duration: 2 seconds
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             print("Switching to MainView")
                             withAnimation {

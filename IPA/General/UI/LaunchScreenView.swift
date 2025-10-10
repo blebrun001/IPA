@@ -14,22 +14,22 @@ struct LaunchScreenView: View {
                     .scaledToFit()
                     .frame(width: 150, height: 150)
 
-                Text("IPA")
+                Text(NSLocalizedString("IPA", comment: "Application acronym displayed on splash screen"))
                     .font(.title2)
                     .foregroundColor(.primary)
                     .padding(.top, 10)
 
-                Text("Integrated Photogrammetry Assistant")
+                Text(NSLocalizedString("Integrated Photogrammetry Assistant", comment: "Full application name on splash screen"))
                     .font(.title2)
                     .foregroundColor(.primary)
                     .padding(.top, 0)
 
-                Text("Version 1.0.0")
+                Text(NSLocalizedString("Version 1.1.0", comment: "Splash screen version number"))
                     .font(.subheadline)
                     .foregroundColor(.primary)
                     .padding(.top, 5)
 
-                Text("© 2025 Brice Lebrun")
+                Text(NSLocalizedString("© 2025 Brice Lebrun", comment: "Splash screen copyright"))
                     .font(.footnote)
                     .foregroundColor(.primary)
                     .padding(.top, 0)

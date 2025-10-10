@@ -43,10 +43,10 @@ struct PhotogrammetryTabView: View {
     
     
     var body: some View {
-        VStack(spacing: 15) {
+        VStack(alignment: .leading, spacing: 15) {
             // Main folder selection (specimen root)
             VStack(alignment: .leading, spacing: 10) {
-                Text("Specimen")
+                Text(NSLocalizedString("Specimen", comment: "Section title for specimen selection"))
                     .font(.headline)
                 HStack {
                     if let folder = viewModel.mainFolder {
@@ -54,10 +54,10 @@ struct PhotogrammetryTabView: View {
                             .foregroundColor(.secondary)
                             .lineLimit(1)
                     } else {
-                        Text("No folder selected.")
+                        Text(NSLocalizedString("No folder selected.", comment: "Message when no folder is chosen"))
                             .foregroundColor(.gray)
                     }
-                    Button("Choose") { selectMainFolder() }
+                    Button(NSLocalizedString("Choose", comment: "Button to choose folder")) { selectMainFolder() }
                 }
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 2))
@@ -70,7 +70,7 @@ struct PhotogrammetryTabView: View {
             if !viewModel.subFolders.isEmpty {
                 VStack(alignment: .leading, spacing: 10) {
                     VStack(alignment: .leading, spacing: 10) {
-                    Text("Bone")
+                    Text(NSLocalizedString("Bone", comment: "Section title for bone selection"))
                         .font(.headline)
 
                     List(viewModel.subFolders.sorted(by: { $0.lastPathComponent < $1.lastPathComponent }), id: \.self, selection: $viewModel.selectedSubFolder) { folder in
@@ -96,15 +96,15 @@ struct PhotogrammetryTabView: View {
 
             // Parameters and export options
             HStack {
-                Text("3D model name:")
-                TextField("3D model name", text: $viewModel.fileName)
+                (Text(NSLocalizedString("3D model name", comment: "Label for 3D model name field")) + Text(":"))
+                TextField(NSLocalizedString("3D model name", comment: "Placeholder for 3D model name field"), text: $viewModel.fileName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
 
             HStack {
-                Picker("Export format", selection: $viewModel.exportFormat) {
-                    Text("USDZ").tag(ExportFormat.usdz)
-                    Text("OBJ").tag(ExportFormat.obj)
+                Picker(NSLocalizedString("Export format", comment: "Picker label for export format"), selection: $viewModel.exportFormat) {
+                    Text(NSLocalizedString("USDZ", comment: "Export format USDZ" )).tag(ExportFormat.usdz)
+                    Text(NSLocalizedString("OBJ", comment: "Export format OBJ" )).tag(ExportFormat.obj)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .onChange(of: viewModel.exportFormat) {
@@ -115,42 +115,42 @@ struct PhotogrammetryTabView: View {
             }
 
             HStack {
-                Picker("Detail level", selection: $viewModel.detail) {
-                    Text("Preview").tag(PhotogrammetrySession.Request.Detail.preview)
-                    Text("Reduced").tag(PhotogrammetrySession.Request.Detail.reduced)
-                    Text("Medium").tag(PhotogrammetrySession.Request.Detail.medium)
-                    Text("Full").tag(PhotogrammetrySession.Request.Detail.full)
-                    Text("Raw").tag(PhotogrammetrySession.Request.Detail.raw)
+                Picker(NSLocalizedString("Detail level", comment: "Picker label for detail level"), selection: $viewModel.detail) {
+                    Text(NSLocalizedString("Preview", comment: "Detail level preview" )).tag(PhotogrammetrySession.Request.Detail.preview)
+                    Text(NSLocalizedString("Reduced", comment: "Detail level reduced" )).tag(PhotogrammetrySession.Request.Detail.reduced)
+                    Text(NSLocalizedString("Medium", comment: "Detail level medium" )).tag(PhotogrammetrySession.Request.Detail.medium)
+                    Text(NSLocalizedString("Full", comment: "Detail level full" )).tag(PhotogrammetrySession.Request.Detail.full)
+                    Text(NSLocalizedString("Raw", comment: "Detail level raw" )).tag(PhotogrammetrySession.Request.Detail.raw)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
 
             HStack {
-                Picker("Photos order", selection: $viewModel.sampleOrdering) {
-                    Text("no").tag(PhotogrammetrySession.Configuration.SampleOrdering.unordered)
-                    Text("sequential").tag(PhotogrammetrySession.Configuration.SampleOrdering.sequential)
+                Picker(NSLocalizedString("Photos order", comment: "Picker label for photos ordering"), selection: $viewModel.sampleOrdering) {
+                    Text(NSLocalizedString("Unordered", comment: "Sample ordering unordered" )).tag(PhotogrammetrySession.Configuration.SampleOrdering.unordered)
+                    Text(NSLocalizedString("Sequential", comment: "Sample ordering sequential" )).tag(PhotogrammetrySession.Configuration.SampleOrdering.sequential)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
 
             HStack {
-                Picker("Sensitivity:", selection: $viewModel.featureSensitivity) {
-                    Text("Normal").tag(PhotogrammetrySession.Configuration.FeatureSensitivity.normal)
-                    Text("High").tag(PhotogrammetrySession.Configuration.FeatureSensitivity.high)
+                Picker(NSLocalizedString("Sensitivity:", comment: "Picker label for feature sensitivity"), selection: $viewModel.featureSensitivity) {
+                    Text(NSLocalizedString("Normal", comment: "Feature sensitivity normal" )).tag(PhotogrammetrySession.Configuration.FeatureSensitivity.normal)
+                    Text(NSLocalizedString("High", comment: "Feature sensitivity high" )).tag(PhotogrammetrySession.Configuration.FeatureSensitivity.high)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
             
             HStack {
-                Picker("Mask:", selection: $viewModel.maskMode) {
-                    Text("Isolate from environment").tag(PhotogrammetryManager.MaskMode.isolate)
-                    Text("Include environment").tag(PhotogrammetryManager.MaskMode.include)
+                Picker(NSLocalizedString("Mask:", comment: "Picker label for mask mode"), selection: $viewModel.maskMode) {
+                    Text(NSLocalizedString("Isolate from environment", comment: "Mask option isolate from environment" )).tag(PhotogrammetryManager.MaskMode.isolate)
+                    Text(NSLocalizedString("Include environment", comment: "Mask option include environment" )).tag(PhotogrammetryManager.MaskMode.include)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
 
             HStack {
-                Picker("Texture compression:", selection: $viewModel.textureCompressionLevel) {
+                Picker(NSLocalizedString("Texture compression:", comment: "Picker label for texture compression"), selection: $viewModel.textureCompressionLevel) {
                     ForEach(TextureCompressionLevel.allCases, id: \.self) { level in
                         Text(level.localizedName).tag(level)
                     }
@@ -160,25 +160,25 @@ struct PhotogrammetryTabView: View {
 
             // File cleanup options after export
             HStack(alignment: .firstTextBaseline, spacing: 16) {
-                Text("Fichiers à supprimer après export")
+                Text(NSLocalizedString("Files to delete after export", comment: "Label for cleanup toggles"))
 
-                Toggle("Usda", isOn: Binding(
+                Toggle(NSLocalizedString("USDA", comment: "Toggle label for deleting USDA files"), isOn: Binding(
                     get: { PhotogrammetryManager.shared.shouldDeleteUSDAFiles },
                     set: { PhotogrammetryManager.shared.shouldDeleteUSDAFiles = $0 }
                 ))
-                Toggle("AO", isOn: Binding(
+                Toggle(NSLocalizedString("AO", comment: "Toggle label for deleting ambient occlusion files"), isOn: Binding(
                     get: { PhotogrammetryManager.shared.shouldDeleteAO },
                     set: { PhotogrammetryManager.shared.shouldDeleteAO = $0 }
                 ))
-                Toggle("Disp", isOn: Binding(
+                Toggle(NSLocalizedString("Displacement", comment: "Toggle label for deleting displacement maps"), isOn: Binding(
                     get: { PhotogrammetryManager.shared.shouldDeleteDisplacement },
                     set: { PhotogrammetryManager.shared.shouldDeleteDisplacement = $0 }
                 ))
-                Toggle("Normal", isOn: Binding(
+                Toggle(NSLocalizedString("Normal", comment: "Toggle label for deleting normal maps"), isOn: Binding(
                     get: { PhotogrammetryManager.shared.shouldDeleteNormal },
                     set: { PhotogrammetryManager.shared.shouldDeleteNormal = $0 }
                 ))
-                Toggle("Rough", isOn: Binding(
+                Toggle(NSLocalizedString("Roughness", comment: "Toggle label for deleting roughness maps"), isOn: Binding(
                     get: { PhotogrammetryManager.shared.shouldDeleteRoughness },
                     set: { PhotogrammetryManager.shared.shouldDeleteRoughness = $0 }
                 ))
@@ -186,7 +186,7 @@ struct PhotogrammetryTabView: View {
             
             // Capture controls
             HStack(spacing: 20) {
-                Button("Start") {
+                Button(NSLocalizedString("Start", comment: "Button to start photogrammetry")) {
                     if settings.enableSound {
                         SoundPlayer.playSound(named: "start_capture")
                     }
@@ -194,13 +194,13 @@ struct PhotogrammetryTabView: View {
                 }
                     .disabled(viewModel.isProcessing)
                 
-                Button("Stop") {
+                Button(NSLocalizedString("Stop", comment: "Button to stop photogrammetry")) {
                     if settings.enableSound {
                         SoundPlayer.playSound(named: "stop_capture")
                     }
                     photogrammetry.stopCapture()
                     viewModel.isProcessing = false
-                    viewModel.statusMessage = "Process stoped by user."
+                    viewModel.statusMessage = NSLocalizedString("Process stopped by user.", comment: "Status when user stops photogrammetry")
                 }
                 .disabled(!viewModel.isProcessing)
             }
@@ -211,7 +211,7 @@ struct PhotogrammetryTabView: View {
                     HStack {
                         ProgressView(value: viewModel.progress)
                             .frame(width: 300)
-                        Text("\(Int(viewModel.progress * 100))%")
+                        Text(String(format: NSLocalizedString("%lld%%", comment: "Progress percentage"), Int64(viewModel.progress * 100)))
                             .frame(width: 50, alignment: .leading)
                     }
                     
@@ -230,6 +230,7 @@ struct PhotogrammetryTabView: View {
             Spacer()
         }
         .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     // MARK: - Folder Selection Helpers
@@ -254,7 +255,8 @@ struct PhotogrammetryTabView: View {
                 (try? item.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) ?? false
             }
         } catch {
-            viewModel.statusMessage = "Main folder read error: \(error.localizedDescription)"
+            let template = NSLocalizedString("Main folder read error: %@", comment: "Status when reading main folder fails")
+            viewModel.statusMessage = String(format: template, error.localizedDescription)
         }
     }
     
@@ -279,16 +281,16 @@ struct PhotogrammetryTabView: View {
     // Starts the photogrammetry process using the configured options
     private func startCapture() {
         guard let input = viewModel.inputFolder, let output = viewModel.outputFolder else {
-            viewModel.statusMessage = "Please select main folder and sub-folder containing a 'photos' folder."
+            viewModel.statusMessage = NSLocalizedString("Please select main folder and sub-folder containing a 'photos' folder.", comment: "Status when folder selection is incomplete")
             return
         }
         guard FileManager.default.fileExists(atPath: input.path) else {
-            viewModel.statusMessage = "No 'photos' folder in selected sub-folder."
+            viewModel.statusMessage = NSLocalizedString("No 'photos' folder in selected sub-folder.", comment: "Status when photos folder missing")
             return
         }
         viewModel.isProcessing = true
         viewModel.progress = 0.0
-        viewModel.statusMessage = "Processing"
+        viewModel.statusMessage = NSLocalizedString("Processing", comment: "Status while photogrammetry is running")
         viewModel.startTime = Date()
         
         Task {
@@ -310,7 +312,9 @@ struct PhotogrammetryTabView: View {
                     DispatchQueue.main.async {
                         self.viewModel.isProcessing = false
                         let duration = Date().timeIntervalSince(self.viewModel.startTime ?? Date())
-                        self.viewModel.statusMessage = "Processed in \(String(format: "%.2f", duration)) sec. File : \(fileURL.lastPathComponent)"
+                        let durationString = String(format: NSLocalizedString("%.2f", comment: "Two-decimal duration"), duration)
+                        let template = NSLocalizedString("Processed in %@ sec. File: %@", comment: "Status after photogrammetry completes")
+                        self.viewModel.statusMessage = String(format: template, durationString, fileURL.lastPathComponent)
                     }
                 }
             )

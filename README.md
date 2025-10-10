@@ -1,48 +1,57 @@
-
 <p align="center">
   <img src="AppIcon.png" alt="IPA Logo" width="120" />
 </p>
 
-# IPA
+# IPA - Integrated Photogrammetry Assistant
 
+IPA is a macOS application developed at IPHES-CERCA by Brice Lebrun to streamline the production, scaling, organisation, and publication of osteological 3D datasets. The toolkit brings together photogrammetry automation, OBJ post-processing utilities, dataset preparation helpers, and Dataverse publishing tools inside a single interface.
 
-IPA (Integrated Photogrammetry Assistant) is a macOS application developed for internal use at the IPHES-CERCA laboratory. Its primary purpose is to support the digitization of the IPHES-CERCA Osteological Reference Collection. The software enables users to efficiently generate and scale 3D models, and to publish them on Dataverse. It also streamlines repetitive tasks such as nested folder creation and renaming of .OBJ and .MTL files.
+## Key Capabilities
+- Photogrammetry capture orchestration with automated clean-up and optional texture compression.
+- Semi-automatic and manual OBJ scaling workflows, including Micro QR-based measurement extraction.
+- Interactive 3D viewer with measurement scraping and quick transfer to scaling modules.
+- Dataset preparation helpers: README generator, Dataverse uploader, folder templating, and OBJ renaming.
+- Bone folder creation assistant backed by UBERON suggestions.
 
-## Features
-- 3D model creation and scaling
-- Readme generator
-- Dataset preparation (Dataverse client, Readme generator)
-- File management utilities
-
-## Project Structure
-- `IPA/` — Main app source code
-  - `General/Logic/` — Core logic and settings
-  - `General/UI/` — Main UI components
-  - `Internationalization/` — Language management
-  - `Modules/` — Main features (3D creation, dataset preparation, file management)
-  - `Assets.xcassets/` — App assets and icons
-  - `Sounds/` — Sound files and player
-- `IPATests/` — Unit tests
-- `IPAUITests/` — UI tests
+## Project Layout
+- `IPA/`
+  - `General/` – Scene setup, global settings, shared UI.
+  - `Internationalization/` – Localization resources and language picker utilities.
+  - `Modules/` – Feature groups (3D creation, dataset preparation, file management).
+  - `Assets.xcassets/`, `Sounds/`, `Preview Content/` – Media and design resources.
+- `IPATests/`, `IPAUITests/` – Unit and UI test targets.
+- `assets/` – Marketing and documentation assets.
 
 ## Requirements
-- macOS
-- Xcode (latest recommended)
-- Swift
+- macOS 13 Ventura or later.
+- Xcode 15 or later with the Swift 5.9 toolchain.
+- Apple Silicon or Intel Mac capable of running RealityKit photogrammetry workflows.
 
 ## Getting Started
-1. Clone the repository
-2. Open `IPA.xcodeproj` in Xcode
-3. Build and run the app
+1. Clone the repository and ensure submodules (if any) are initialised.
+2. Open `IPA.xcodeproj` in Xcode.
+3. Select the `IPA` scheme and build/run on macOS.
+4. Provide the necessary Dataverse credentials under **Settings → General** before using upload features.
 
-## Fundings
+## Localization
+IPA ships with four fully translated interfaces:
+- English *(default UI language)*
+- French
+- Spanish
+- Catalan
 
-This work is part of the Esqueletos en linea project held by Dr Palmira Saladié (IPHES-CERCA), financed by the Maria de Guzman action of Fundación Española para la Ciencia y la Tecnología
+The active language can be changed at runtime from the toolbar globe button. Switching languages restarts the app to reload localized resources.
 
----
+## Development Notes
+- Project preferences are stored via `AppStorage` in `SettingsManager`.
+- Photogrammetry sessions are coordinated by `PhotogrammetryManager`, which also supervises export clean-up.
+- Micro QR detection and auto-scaling live inside `AutoScaleViewModel` and related views.
+- When adding new UI text, use `NSLocalizedString` with a descriptive comment and add translations in `Internationalization/Localizable.xcstrings`.
+
+## Funding Acknowledgement
+This work is part of the *Esqueletos en línea* project led by Dr. Palmira Saladié (IPHES-CERCA), funded by the María de Guzmán programme of the Fundación Española para la Ciencia y la Tecnología.
 
 ## License
+Licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License.
 
-This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License.
-
-See the full license at: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
+Full text: <https://creativecommons.org/licenses/by-nc/4.0/>

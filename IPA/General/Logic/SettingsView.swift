@@ -1,3 +1,6 @@
+//  SettingsView.swift
+//  Displays global application preferences, including Dataverse defaults and sound toggle.
+
 import SwiftUI
 
 
@@ -6,10 +9,10 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("General")) {
-                TextField("Jeton de l'API par défaut:", text: $settings.dataverseToken)
-                TextField("Adresse du Dataverse par défaut:", text: $settings.dataverseAddress)
-                Toggle("Activate sounds", isOn: $settings.enableSound)
+            Section(header: Text(NSLocalizedString("General", comment: "Settings section title"))) {
+                TextField(NSLocalizedString("Default API token:", comment: "Settings field label for API token"), text: $settings.dataverseToken)
+                TextField(NSLocalizedString("Default Dataverse address:", comment: "Settings field label for Dataverse address"), text: $settings.dataverseAddress)
+                Toggle(NSLocalizedString("Activate sounds", comment: "Toggle to enable sound effects"), isOn: $settings.enableSound)
             }
         }
         .padding()

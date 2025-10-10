@@ -6,14 +6,15 @@ import SwiftUI
 
 // Enum representing each application section (tab)
 enum AppSection: String, CaseIterable, Identifiable {
-    case photogrammetry = "Photogrammetry"
-    case objScaling = "OBJ Scaling"
-    case objRenamer = "OBJ Renamer"
-    case folderStructure = "Folder Structure"
-    case readmeGenerator = "README Generator"
-    case dataverse = "Dataverse Upload"
-    case Viewer = "Viewer"
-    case boneFolder = "Bone Folder"
+    case photogrammetry
+    case autoScale
+    case objScaling
+    case viewer
+    case objRenamer
+    case folderStructure
+    case readmeGenerator
+    case dataverse
+    case boneFolder
     
     var id: String { rawValue }
     
@@ -21,25 +22,81 @@ enum AppSection: String, CaseIterable, Identifiable {
     var systemImage: String {
         switch self {
         case .photogrammetry:      return "cube.box"
+        case .autoScale:           return "ruler"
         case .objScaling:          return "arrow.up.left.and.arrow.down.right"
+        case .viewer:              return "dot.viewfinder"
         case .objRenamer:          return "text.badge.plus"
         case .folderStructure:     return "folder"
         case .readmeGenerator:     return "doc.text"
         case .dataverse:           return "icloud.and.arrow.up"
-        case .Viewer:              return "dot.viewfinder"
         case .boneFolder:          return "bolt"
         }
     }
     
+    // Ordering index used to keep the sidebar sequence consistent
+    var sortIndex: Int {
+        AppSection.allCases.firstIndex(of: self) ?? 0
+    }
+
     // Logical category used for grouping in the sidebar
-    var category: String {
+    var category: SectionCategory {
         switch self {
-        case .photogrammetry, .objScaling, .Viewer:
-            return "3D creation"
+        case .photogrammetry, .autoScale, .objScaling, .viewer:
+            return .creation
         case .objRenamer, .folderStructure, .boneFolder:
-            return "Files management"
+            return .files
         case .readmeGenerator, .dataverse:
-            return "Dataset preparation"
+            return .dataset
+        }
+    }
+    
+    // Localized title exposed to UI components
+    var localizedTitle: String {
+        switch self {
+        case .photogrammetry:
+            return NSLocalizedString("Photogrammetry", comment: "Sidebar entry for photogrammetry tools")
+        case .autoScale:
+            return NSLocalizedString("Auto Scale", comment: "Sidebar entry for semi-automatic scaling")
+        case .objScaling:
+            return NSLocalizedString("OBJ Scaling", comment: "Sidebar entry for OBJ scaling module")
+        case .viewer:
+            return NSLocalizedString("Viewer", comment: "Sidebar entry for 3D viewer")
+        case .objRenamer:
+            return NSLocalizedString("OBJ Renamer", comment: "Sidebar entry for OBJ renaming tool")
+        case .folderStructure:
+            return NSLocalizedString("Folder Structure", comment: "Sidebar entry for folder structure generator")
+        case .readmeGenerator:
+            return NSLocalizedString("README Generator", comment: "Sidebar entry for README generator")
+        case .dataverse:
+            return NSLocalizedString("Dataverse Upload", comment: "Sidebar entry for Dataverse upload module")
+        case .boneFolder:
+            return NSLocalizedString("Bone Folder", comment: "Sidebar entry for bone folder utility")
+        }
+    }
+}
+
+// Sidebar categories used to group modules by purpose
+enum SectionCategory: CaseIterable, Hashable {
+    case creation
+    case files
+    case dataset
+    
+    var sortIndex: Int {
+        switch self {
+        case .creation: return 0
+        case .files:    return 1
+        case .dataset:  return 2
+        }
+    }
+    
+    var localizedTitle: String {
+        switch self {
+        case .creation:
+            return NSLocalizedString("3D creation", comment: "Sidebar group title for 3D creation tools")
+        case .files:
+            return NSLocalizedString("Files management", comment: "Sidebar group title for file management tools")
+        case .dataset:
+            return NSLocalizedString("Dataset preparation", comment: "Sidebar group title for dataset preparation tools")
         }
     }
 }
@@ -53,19 +110,20 @@ struct MainView: View {
     @EnvironmentObject var photogrammetryVM: PhotogrammetryViewModel
     
     // Sections grouped by category
-    private var groupedSections: [(key: String, value: [AppSection])] {
+    private var groupedSections: [(category: SectionCategory, sections: [AppSection])] {
         Dictionary(grouping: AppSection.allCases, by: { $0.category })
-            .sorted { $0.key < $1.key }
+            .map { ($0.key, $0.value.sorted { $0.sortIndex < $1.sortIndex }) }
+            .sorted { $0.category.sortIndex < $1.category.sortIndex }
     }
 
     var body: some View {
         NavigationSplitView {
             VStack {
                 List(selection: $selectedSection) {
-                    ForEach(groupedSections, id: \.key) { group in
-                        Section(header: Text(group.key)) {
-                            ForEach(group.value, id: \.self) { section in
-                                Label(section.rawValue, systemImage: section.systemImage)
+                    ForEach(groupedSections, id: \.category) { group in
+                        Section(header: Text(group.category.localizedTitle)) {
+                            ForEach(group.sections, id: \.self) { section in
+                                Label(section.localizedTitle, systemImage: section.systemImage)
                                     .tag(section)
                                     .padding(.vertical, 4)
                                     .contentShape(Rectangle())
@@ -74,7 +132,7 @@ struct MainView: View {
                     }
                 }
                 .listStyle(.sidebar)
-                .navigationTitle("Tools")
+                .navigationTitle(NSLocalizedString("Tools", comment: "Sidebar navigation title"))
 
                 Spacer()
 
@@ -85,10 +143,10 @@ struct MainView: View {
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .opacity(0.5)
-                    Text("Version 1.0.0")
+                    Text(NSLocalizedString("Version 1.1.0", comment: "Application version in sidebar footer"))
                         .font(.footnote)
                         .foregroundColor(.gray)
-                    Text("© 2025 Brice Lebrun")
+                    Text(NSLocalizedString("© 2025 Brice Lebrun", comment: "Application copyright"))
                         .font(.footnote)
                         .foregroundColor(.gray)
                 }
@@ -97,7 +155,7 @@ struct MainView: View {
         } detail: {
             // Dynamic content for the selected section
             contentView(for: selectedSection)
-                .navigationTitle(selectedSection.rawValue)
+                .navigationTitle(selectedSection.localizedTitle)
         }
         .frame(minWidth: 800, minHeight: 600)
         .toolbar {
@@ -115,6 +173,8 @@ struct MainView: View {
         switch section {
         case .photogrammetry:
             PhotogrammetryTabView(viewModel: photogrammetryVM)
+        case .autoScale:
+            AutoScaleTabView()
         case .objScaling:
             OBJScalingTabView()
         case .objRenamer:
@@ -125,7 +185,7 @@ struct MainView: View {
             ReadmeGeneratorTabView()
         case .dataverse:
             DataverseTabView()
-        case .Viewer:
+        case .viewer:
             ViewerTabView()
         case .boneFolder:
             BoneFolderTabView()
@@ -138,6 +198,7 @@ struct MainView_Previews: PreviewProvider {
         MainView()
             .environmentObject(PhotogrammetryViewModel())
             .environmentObject(MeasureViewModel())
+            .environmentObject(AutoScaleViewModel())
             .environmentObject(OBJScalerViewModel())
             .environmentObject(OBJRenamerViewModel())
             .environmentObject(ReadmeGeneratorViewModel())

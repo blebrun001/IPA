@@ -20,9 +20,9 @@ public class OBJScaler {
         print("Scaling of OBJ file: \(file.lastPathComponent)")
         print("Applied scaling factor: \(scaleFactor)")
         
-        // Vérify that hte file exist
+        // Verify that the file exists on disk
         guard fileManager.fileExists(atPath: file.path) else {
-            throw NSError(domain: "OBJScaler", code: 0, userInfo: [NSLocalizedDescriptionKey: "Can't find file."])
+            throw NSError(domain: "OBJScaler", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("File not found.", comment: "Error when OBJ file is missing")])
         }
         
         // read obj content
@@ -75,7 +75,7 @@ public class OBJScaler {
 
         // update last generated obj file
         PhotogrammetryManager.shared.lastGeneratedOBJ = destination
-        print("lastGeneratedOBJ updated : \(destination.path)")
+        print("lastGeneratedOBJ updated: \(destination.path)")
 
         return destination
     }

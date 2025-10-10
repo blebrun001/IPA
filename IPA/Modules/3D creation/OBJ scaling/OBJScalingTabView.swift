@@ -12,7 +12,7 @@ struct OBJScalingTabView: View {
         VStack(spacing: 15) {
             // OBJ file selection
             HStack {
-                Button("Select OBJ file") {
+                Button(NSLocalizedString("Select OBJ file", comment: "Button to pick OBJ file for scaling")) {
                     let panel = NSOpenPanel()
                     panel.allowedContentTypes = [UTType(filenameExtension: "obj")!]
                     panel.allowsMultipleSelection = false
@@ -25,37 +25,37 @@ struct OBJScalingTabView: View {
                     Text(url.lastPathComponent)
                         .foregroundColor(.secondary)
                 } else {
-                    Text("No file selected")
+                    Text(NSLocalizedString("No file selected", comment: "Placeholder when no OBJ file is selected"))
                         .foregroundColor(.gray)
                 }
             }
             
             // Uncalibrated measurement input
             HStack {
-                Text("Uncalibrated measure:")
-                TextField("Value", text: $viewModel.uncalibrated)
+                Text(NSLocalizedString("Uncalibrated measure:", comment: "Label for uncalibrated measurement input"))
+                TextField(NSLocalizedString("Value", comment: "Placeholder for measurement input"), text: $viewModel.uncalibrated)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 100)
             }
             
             // Real-world measurement input
             HStack {
-                Text("Calibrated measure (cm):")
-                TextField("Value", text: $viewModel.real)
+                Text(NSLocalizedString("Calibrated measure (cm):", comment: "Label for real-world measurement input"))
+                TextField(NSLocalizedString("Value", comment: "Placeholder for measurement input"), text: $viewModel.real)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 100)
             }
             
             // Overwrite toggle option
-            Toggle("Overwrite original file", isOn: $viewModel.overwrite)
+            Toggle(NSLocalizedString("Overwrite original file", comment: "Toggle to overwrite original OBJ"), isOn: $viewModel.overwrite)
                 .padding(.top, 8)
-            
+
             // Scaling action button
-            Button("Start scaling") {
+            Button(NSLocalizedString("Start scaling", comment: "Button to start scaling process")) {
                 guard let file = viewModel.objFile,
                       let realValue = Double(viewModel.real),
                       let uncalibratedValue = Double(viewModel.uncalibrated) else {
-                    viewModel.resultMessage = "Please select a file and numerical value."
+                    viewModel.resultMessage = NSLocalizedString("Please select a file and numerical value.", comment: "Error when input values are invalid")
                     return
                 }
                 do {
@@ -65,9 +65,11 @@ struct OBJScalingTabView: View {
                         real: realValue,
                         overwrite: viewModel.overwrite
                     )
-                    viewModel.resultMessage = "Scaled file: \(resultURL.lastPathComponent)"
+                    let template = NSLocalizedString("Scaled file: %@", comment: "Message after successful scaling")
+                    viewModel.resultMessage = String(format: template, resultURL.lastPathComponent)
                 } catch {
-                    viewModel.resultMessage = "Error: \(error.localizedDescription)"
+                    let template = NSLocalizedString("Error: %@", comment: "Template for displaying scaling errors")
+                    viewModel.resultMessage = String(format: template, error.localizedDescription)
                 }
             }
             .padding(.top, 8)

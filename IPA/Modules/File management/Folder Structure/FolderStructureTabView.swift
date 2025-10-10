@@ -11,7 +11,7 @@ struct FolderStructureTabView: View {
         VStack(spacing: 15) {
             // Base folder selection
             HStack {
-                Button("Select base directory") {
+                Button(NSLocalizedString("Select base directory", comment: "Button to choose root folder")) {
                     viewModel.baseDir = selectFolder()
                 }
                 if let url = viewModel.baseDir {
@@ -21,19 +21,19 @@ struct FolderStructureTabView: View {
             }
             
             // Toggle between unique term mode and manual list
-            Toggle("Automatically generate unique term", isOn: $viewModel.useSingleTerm)
+            Toggle(NSLocalizedString("Automatically generate unique term", comment: "Toggle to build repeated folder names"), isOn: $viewModel.useSingleTerm)
                 .padding(.vertical, 5)
-            
+
             if viewModel.useSingleTerm {
                 // Inputs for single term and number of folders
-                TextField("Term name (eg.: Rib)", text: $viewModel.singleTerm)
+                TextField(NSLocalizedString("Term name (e.g. Rib)", comment: "Placeholder for base term"), text: $viewModel.singleTerm)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Number of folders", text: $viewModel.termCount)
+                TextField(NSLocalizedString("Number of folders", comment: "Placeholder for number of folders"), text: $viewModel.termCount)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             } else {
                 // Manual term list input
                 VStack(alignment: .leading) {
-                    Text("Terms :")
+                    Text(NSLocalizedString("Terms:", comment: "Heading for manual term list"))
                         .font(.headline)
                     
                     ForEach(viewModel.terms, id: \.self) { term in
@@ -48,7 +48,7 @@ struct FolderStructureTabView: View {
                     }
                     
                     HStack {
-                        TextField("Add a term", text: $viewModel.newTerm, onCommit: addTerm)
+                        TextField(NSLocalizedString("Add a term", comment: "Placeholder for term input"), text: $viewModel.newTerm, onCommit: addTerm)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         Button(action: addTerm) {
                             Image(systemName: "plus.circle.fill")
@@ -61,7 +61,7 @@ struct FolderStructureTabView: View {
             
             // Subfolder structure input
             VStack(alignment: .leading) {
-                Text("Structure (one folder per line) :")
+                Text(NSLocalizedString("Structure (one folder per line):", comment: "Heading for structure list"))
                     .font(.headline)
                 
                 ForEach(viewModel.structure, id: \.self) { folder in
@@ -76,7 +76,7 @@ struct FolderStructureTabView: View {
                 }
                 
                 HStack {
-                    TextField("Add a folder", text: $viewModel.newStructure, onCommit: addStructure)
+                    TextField(NSLocalizedString("Add a folder", comment: "Placeholder for subfolder input"), text: $viewModel.newStructure, onCommit: addStructure)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     Button(action: addStructure) {
                         Image(systemName: "plus.circle.fill")
@@ -87,7 +87,7 @@ struct FolderStructureTabView: View {
             }
             
             // Generate folder structure
-            Button("Generate structure") {
+            Button(NSLocalizedString("Generate structure", comment: "Button to create folder structure")) {
                 generateStructure()
             }
             Text(viewModel.resultMessage)
@@ -132,7 +132,7 @@ struct FolderStructureTabView: View {
     
     private func generateStructure() {
         guard let base = viewModel.baseDir, !viewModel.structure.isEmpty else {
-            viewModel.resultMessage = "Fill all fields."
+            viewModel.resultMessage = NSLocalizedString("Fill all fields.", comment: "Error when folder structure form incomplete")
             return
         }
         
@@ -142,7 +142,7 @@ struct FolderStructureTabView: View {
             guard !viewModel.singleTerm.isEmpty,
                   let count = Int(viewModel.termCount),
                   count > 0 else {
-                viewModel.resultMessage = "Fill term and number."
+                viewModel.resultMessage = NSLocalizedString("Fill term and number.", comment: "Error when single term inputs missing")
                 return
             }
             termList = (1...count).map { index in
@@ -150,7 +150,7 @@ struct FolderStructureTabView: View {
             }
         } else {
             guard !viewModel.terms.isEmpty else {
-                viewModel.resultMessage = "Fill terms."
+                viewModel.resultMessage = NSLocalizedString("Fill terms.", comment: "Error when no manual terms provided")
                 return
             }
             termList = viewModel.terms
@@ -160,7 +160,7 @@ struct FolderStructureTabView: View {
         folderStructureGenerator.generateFolderStructure(base: base,
                                                          terms: termList,
                                                          structure: viewModel.structure.joined(separator: "\n"))
-        viewModel.resultMessage = "Folder structure generated successfully."
+        viewModel.resultMessage = NSLocalizedString("Folder structure generated successfully.", comment: "Status after creating folder structure")
     }
     
     // Convert an integer to a Roman numeral string

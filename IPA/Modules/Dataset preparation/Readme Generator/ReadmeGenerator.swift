@@ -7,6 +7,7 @@ public class ReadmeGenerator {
     public init() {}
     
     // Generates a README.txt file with provided metadata and writes it to the given URL.
+    // The output is intentionally fixed in English to keep dataset documentation consistent.
     public func generateReadme(parameters: [String: String], structure: String, comments: String, outputURL: URL) throws {
         var content = ""
         content.append("GENERAL INFORMATION\n-------------------\n")
@@ -21,13 +22,15 @@ public class ReadmeGenerator {
         content.append("Technique Used: \(parameters["technique"] ?? "")\n")
         content.append("Licence: \(parameters["licence"] ?? "")\n")
         content.append("DOI: \(parameters["doi"] ?? "")\n")
-        content.append("Folder Size (Go): \(parameters["fileSize"] ?? "")\n")
+        content.append("Folder Size (GB): \(parameters["fileSize"] ?? "")\n")
         content.append("Number of Files: \(parameters["numFiles"] ?? "")\n")
-        content.append("\nSTRUCTURE\n---------\n")
+        content.append("\n")
+        content.append("STRUCTURE\n---------\n")
         content.append("\(structure)\n")
-        content.append("\nCOMMENTS\n--------\n")
+        content.append("\n")
+        content.append("COMMENTS\n--------\n")
         content.append("\(comments)")
-        
+
         try content.write(to: outputURL, atomically: true, encoding: .utf8)
     }
 }

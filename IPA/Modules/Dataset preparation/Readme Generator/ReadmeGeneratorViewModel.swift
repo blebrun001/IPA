@@ -1,6 +1,7 @@
 //  ReadmeGeneratorViewModel.swift
-//  ViewModel storing form input and output message for the README generation feature.import Foundation
+//  ViewModel storing form input and output messages for the README generation feature.
 
+import Foundation
 import SwiftUI
 
 class ReadmeGeneratorViewModel: ObservableObject {

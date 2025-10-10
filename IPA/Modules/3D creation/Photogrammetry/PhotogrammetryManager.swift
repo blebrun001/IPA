@@ -103,7 +103,8 @@ public class PhotogrammetryManager: ObservableObject {
                                 
                                 if let originalOBJ = foundOBJ {
                                     print("OBJ file found: \(originalOBJ.path)")
-                                    let renamedOBJ = try self.renameGeneratedOBJ(fileURL: originalOBJ, newName: fileName)
+                                    let renamedOBJ = try self.renameExportedAssets(originalOBJ: originalOBJ,
+                                                                                   outputFolder: outputFolder)
                                     if compressImages {
                                         do {
                                             try self.compressImages(in: objFolder, quality: compressionQuality)
@@ -152,17 +153,144 @@ public class PhotogrammetryManager: ObservableObject {
         print("Process stoped by user")
     }
 
-    // Renames the exported OBJ file to match the desired filename
-    private func renameGeneratedOBJ(fileURL: URL, newName: String) throws -> URL {
-        let newFileURL = fileURL.deletingLastPathComponent().appendingPathComponent("\(newName).obj")
-        print("Try to rename: \(fileURL.path) → \(newFileURL.path)")
-        
-        if FileManager.default.fileExists(atPath: newFileURL.path) {
-            try FileManager.default.removeItem(at: newFileURL)
+    // Renames exported OBJ/MTL and texture assets to match specimen/bone naming rules
+    private func renameExportedAssets(originalOBJ: URL, outputFolder: URL) throws -> URL {
+        let fileManager = FileManager.default
+        let modelFolder = originalOBJ.deletingLastPathComponent()
+
+        func sanitized(_ name: String) -> String {
+            name
+                .replacingOccurrences(of: " ", with: "_")
+                .replacingOccurrences(of: "\t", with: "_")
         }
-        try FileManager.default.moveItem(at: fileURL, to: newFileURL)
-        print("File successfully renamed: \(newFileURL.path)")
-        return newFileURL
+
+        let specimenName = sanitized(outputFolder.deletingLastPathComponent().lastPathComponent)
+        let boneName = sanitized(outputFolder.lastPathComponent)
+        let baseComponents = [specimenName, boneName].filter { !$0.isEmpty }
+        let baseName = baseComponents.isEmpty ? boneName : baseComponents.joined(separator: "_")
+
+        var objURL = originalOBJ
+        var mtlURL: URL?
+        var renamedFilenames: [String: String] = [:]
+
+        // Rename OBJ file
+        let desiredOBJName = "\(baseName)_model.obj"
+        let desiredOBJURL = modelFolder.appendingPathComponent(desiredOBJName)
+        if objURL.lastPathComponent != desiredOBJName {
+            if fileManager.fileExists(atPath: desiredOBJURL.path) {
+                try fileManager.removeItem(at: desiredOBJURL)
+            }
+            try fileManager.moveItem(at: objURL, to: desiredOBJURL)
+            print("OBJ renamed: \(objURL.lastPathComponent) → \(desiredOBJName)")
+            objURL = desiredOBJURL
+        }
+
+        let files = try fileManager.contentsOfDirectory(at: modelFolder, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+
+        // Rename MTL file if present
+        if let existingMTL = files.first(where: { $0.pathExtension.lowercased() == "mtl" }) {
+            let desiredMTLName = "\(baseName)_material.mtl"
+            let desiredMTLURL = modelFolder.appendingPathComponent(desiredMTLName)
+            if existingMTL.lastPathComponent != desiredMTLName {
+                if fileManager.fileExists(atPath: desiredMTLURL.path) {
+                    try fileManager.removeItem(at: desiredMTLURL)
+                }
+                try fileManager.moveItem(at: existingMTL, to: desiredMTLURL)
+                print("MTL renamed: \(existingMTL.lastPathComponent) → \(desiredMTLName)")
+                renamedFilenames[existingMTL.lastPathComponent] = desiredMTLName
+                mtlURL = desiredMTLURL
+            } else {
+                mtlURL = existingMTL
+            }
+        }
+
+        // Rename texture maps following requested nomenclature
+        let textureExtensions: Set<String> = ["png", "jpg", "jpeg", "tif", "tiff", "bmp", "exr"]
+        var typeCounts: [String: Int] = [:]
+
+        func renameTextures(in files: [URL]) throws {
+            for file in files {
+                let ext = file.pathExtension.lowercased()
+                guard textureExtensions.contains(ext) else { continue }
+
+                let lowercased = file.lastPathComponent.lowercased()
+                guard let baseType = textureType(for: lowercased) else { continue }
+
+                let usageCount = typeCounts[baseType, default: 0]
+                typeCounts[baseType] = usageCount + 1
+
+                let typeSuffix = usageCount == 0 ? baseType : "\(baseType)_\(usageCount + 1)"
+                let desiredTextureName = "\(baseName)_\(typeSuffix)." + file.pathExtension
+                let desiredTextureURL = file.deletingLastPathComponent().appendingPathComponent(desiredTextureName)
+
+                if file.lastPathComponent != desiredTextureName {
+                    if fileManager.fileExists(atPath: desiredTextureURL.path) {
+                        try fileManager.removeItem(at: desiredTextureURL)
+                    }
+                    try fileManager.moveItem(at: file, to: desiredTextureURL)
+                    print("Texture renamed: \(file.lastPathComponent) → \(desiredTextureName)")
+                    renamedFilenames[file.lastPathComponent] = desiredTextureName
+                }
+            }
+        }
+
+        try renameTextures(in: files)
+
+        let texturesFolder = modelFolder.appendingPathComponent("textures", isDirectory: true)
+        if fileManager.directoryExists(at: texturesFolder) {
+            let nestedFiles = try fileManager.contentsOfDirectory(at: texturesFolder, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+            try renameTextures(in: nestedFiles)
+        }
+
+        // Update OBJ mtllib reference if needed
+        if let mtlRenameEntry = renamedFilenames.first(where: { $0.key.lowercased().hasSuffix(".mtl") }) {
+            let newMtlName = mtlRenameEntry.value
+            var objLines = try String(contentsOf: objURL, encoding: .utf8)
+                .components(separatedBy: .newlines)
+            var updated = false
+            for index in objLines.indices {
+                let trimmed = objLines[index].trimmingCharacters(in: .whitespaces)
+                if trimmed.hasPrefix("mtllib ") {
+                    objLines[index] = "mtllib \(newMtlName)"
+                    updated = true
+                    break
+                }
+            }
+            if updated {
+                let newContent = objLines.joined(separator: "\n")
+                try newContent.write(to: objURL, atomically: true, encoding: .utf8)
+            }
+        }
+
+        // Update MTL references for renamed textures
+        if let effectiveMTLURL = mtlURL ?? files.first(where: { $0.pathExtension.lowercased() == "mtl" }) {
+            var mtlContent = try String(contentsOf: effectiveMTLURL, encoding: .utf8)
+            for (oldName, newName) in renamedFilenames where !oldName.lowercased().hasSuffix(".mtl") {
+                mtlContent = mtlContent.replacingOccurrences(of: oldName, with: newName)
+            }
+            try mtlContent.write(to: effectiveMTLURL, atomically: true, encoding: .utf8)
+        }
+
+        return objURL
+    }
+
+    private func textureType(for filename: String) -> String? {
+        if filename.contains("tex0") {
+            return "texture"
+        }
+        if filename.contains("roughness0") {
+            return "roughness"
+        }
+        if filename.contains("norm0") {
+            return "normal"
+        }
+        if filename.contains("disp0") {
+            return "displacement"
+        }
+        if filename.contains("ao0") {
+            return "ambiant-occlusion"
+        }
+        return nil
     }
 
     // Builds a model export request with specified mask mode
@@ -230,19 +358,26 @@ public class PhotogrammetryManager: ObservableObject {
             if ext == "usda", shouldDeleteUSDAFiles {
                 print("Suppression .usda : \(name)")
                 try? fileManager.removeItem(at: file)
-            } else if name.contains("ao0"), shouldDeleteAO {
+            } else if (name.contains("ao0") || name.contains("ambiant-occlusion")), shouldDeleteAO {
                 print("Suppression Ambient Occlusion : \(name)")
                 try? fileManager.removeItem(at: file)
-            } else if name.contains("disp0"), shouldDeleteDisplacement {
+            } else if (name.contains("disp0") || name.contains("displacement")), shouldDeleteDisplacement {
                 print("Suppression Displacement : \(name)")
                 try? fileManager.removeItem(at: file)
-            } else if name.contains("norm0"), shouldDeleteNormal {
+            } else if (name.contains("norm0") || name.contains("_normal")), shouldDeleteNormal {
                 print("Suppression Normal Map : \(name)")
                 try? fileManager.removeItem(at: file)
-            } else if name.contains("roughness"), shouldDeleteRoughness {
+            } else if (name.contains("roughness0") || name.contains("roughness")), shouldDeleteRoughness {
                 print("Suppression Roughness Map : \(name)")
                 try? fileManager.removeItem(at: file)
             }
         }
+    }
+}
+
+private extension FileManager {
+    func directoryExists(at url: URL) -> Bool {
+        var isDir: ObjCBool = false
+        return fileExists(atPath: url.path, isDirectory: &isDir) && isDir.boolValue
     }
 }

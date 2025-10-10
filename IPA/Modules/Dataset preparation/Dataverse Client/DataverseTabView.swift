@@ -10,26 +10,26 @@ struct DataverseTabView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Dataverse configuration").font(.headline)
+            Text(NSLocalizedString("Dataverse configuration", comment: "Section title for Dataverse settings")).font(.headline)
             
             // Dataverse server address
             HStack {
-                Text("Dataverse Addresse:")
-                TextField("Dataverse Addresse", text: $viewModel.dataverseAddress)
+                (Text(NSLocalizedString("Dataverse Address", comment: "Label for Dataverse URL field")) + Text(":"))
+                TextField(NSLocalizedString("Dataverse Address", comment: "Placeholder for Dataverse URL field"), text: $viewModel.dataverseAddress)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             
             // API token
             HStack {
-                Text("Token:")
-                TextField("API Token", text: $viewModel.token)
+                Text(NSLocalizedString("Token:", comment: "Label for API token field"))
+                TextField(NSLocalizedString("API Token", comment: "Placeholder for API token field"), text: $viewModel.token)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             
             // Target dataset DOI
             HStack {
-                Text("Dataset DOI:")
-                TextField("DOI (ex: https://doi.org/10.34810/data1785)", text: $viewModel.datasetDOI)
+                Text(NSLocalizedString("Dataset DOI:", comment: "Label for dataset DOI field"))
+                TextField(NSLocalizedString("DOI (e.g. https://doi.org/10.34810/data1785)", comment: "Placeholder example for dataset DOI"), text: $viewModel.datasetDOI)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             
@@ -37,18 +37,18 @@ struct DataverseTabView: View {
             
             // File/folder selection
             HStack {
-                Button("Select folder/file") {
+                Button(NSLocalizedString("Select folder/file", comment: "Button to select files or directories")) {
                     selectFiles()
                 }
-                Text("\(viewModel.selectedFiles.count) selected elements")
+                Text(String(format: NSLocalizedString("%lld selected elements", comment: "Summary of selected items for upload"), viewModel.selectedFiles.count))
             }
             
             // ZIP compression toggle and name input
-            Toggle("ZIP compression", isOn: $viewModel.compressFiles)
+            Toggle(NSLocalizedString("ZIP compression", comment: "Toggle to enable ZIP compression"), isOn: $viewModel.compressFiles)
             if viewModel.compressFiles {
                 HStack {
-                    Text("ZIP file name:")
-                    TextField("ZIP file name", text: $viewModel.zipFileName)
+                    (Text(NSLocalizedString("ZIP file name", comment: "Label for ZIP file name input")) + Text(":"))
+                    TextField(NSLocalizedString("ZIP file name", comment: "Placeholder for ZIP file name input"), text: $viewModel.zipFileName)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
             }
@@ -59,7 +59,7 @@ struct DataverseTabView: View {
                     ProgressView(value: viewModel.uploadProgress, total: 1.0)
                         .progressViewStyle(LinearProgressViewStyle())
                 } else {
-                    Text("Upload")
+                    Text(NSLocalizedString("Upload", comment: "Button to start uploading"))
                 }
             }
             .disabled(viewModel.selectedFiles.isEmpty ||
@@ -71,7 +71,7 @@ struct DataverseTabView: View {
             Divider()
             
             // API response display
-            Text("API response:")
+            Text(NSLocalizedString("API response:", comment: "Label for API response field"))
             ScrollView {
                 Text(viewModel.apiResponse)
                     .padding()
@@ -110,7 +110,7 @@ struct DataverseTabView: View {
                 }
                 guard let fileURL = fileToUpload else {
                     DispatchQueue.main.async {
-                        viewModel.apiResponse = "No file to upload."
+                        viewModel.apiResponse = NSLocalizedString("No file to upload.", comment: "Status when no file is available for upload")
                         viewModel.isUploading = false
                     }
                     return
@@ -132,14 +132,16 @@ struct DataverseTabView: View {
                                           case .success(let response):
                                               viewModel.apiResponse = response
                                           case .failure(let error):
-                                              viewModel.apiResponse = "Error: \(error.localizedDescription)"
+                                              let template = NSLocalizedString("Error: %@", comment: "Template for displaying upload errors")
+                                              viewModel.apiResponse = String(format: template, error.localizedDescription)
                                           }
                                           viewModel.isUploading = false
                                       }
                                   })
             } catch {
                 DispatchQueue.main.async {
-                    viewModel.apiResponse = "Compression error: \(error.localizedDescription)"
+                    let template = NSLocalizedString("Compression error: %@", comment: "Template for displaying compression errors")
+                    viewModel.apiResponse = String(format: template, error.localizedDescription)
                     viewModel.isUploading = false
                 }
             }

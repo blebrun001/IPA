@@ -9,7 +9,7 @@ class SoundPlayer {
 
     static func playSound(named name: String) {
         guard let url = Bundle.main.url(forResource: name, withExtension: "wav") else {
-            print("Erreur : son '\(name).wav' introuvable")
+            print("Error: sound '\(name).wav' not found")
             return
         }
 
@@ -17,7 +17,7 @@ class SoundPlayer {
             player = try AVAudioPlayer(contentsOf: url)
             player?.play()
         } catch {
-            print("Erreur lors de la lecture audio : \(error.localizedDescription)")
+            print("Error while playing audio: \(error.localizedDescription)")
         }
     }
 }

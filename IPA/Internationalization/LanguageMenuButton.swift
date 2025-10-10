@@ -37,39 +37,42 @@ struct LanguageMenuButton: View {
                     pendingLanguage = lang
                     showRestartAlert = true
                 } label: {
-                    // Add a checkmark to the currently selected language
-                    Label(label(for: lang), systemImage: lang == languageManager.selectedLanguage ? "checkmark" : "")
+                    if lang == languageManager.selectedLanguage {
+                        Label(label(for: lang), systemImage: "checkmark")
+                    } else {
+                        Text(label(for: lang))
+                    }
                 }
             }
         } label: {
             // Menu button icon
-            Label("Langue", systemImage: "globe")
+            Label(NSLocalizedString("Language", comment: "Toolbar language picker label"), systemImage: "globe")
                 .labelStyle(IconOnlyLabelStyle())
                 .imageScale(.large)
         }
-        .help("Changer la langue de l'application")
-        .alert("Changer la langue ?", isPresented: $showRestartAlert) {
-            Button("Annuler", role: .cancel) {
+        .help(NSLocalizedString("Change the application language.", comment: "Language picker tooltip"))
+        .alert(NSLocalizedString("Change language?", comment: "Language picker confirmation title"), isPresented: $showRestartAlert) {
+            Button(NSLocalizedString("Cancel", comment: "Cancel language change"), role: .cancel) {
                 pendingLanguage = nil
             }
-            Button("Redémarrer", role: .destructive) {
+            Button(NSLocalizedString("Restart", comment: "Confirm language change and restart"), role: .destructive) {
                 if let lang = pendingLanguage {
                     languageManager.selectedLanguage = lang
                     restartApp()
                 }
             }
         } message: {
-            Text("L'application va redémarrer pour appliquer la langue.")
+            Text(NSLocalizedString("The application will restart to apply the selected language.", comment: "Language picker confirmation message"))
         }
     }
 
     // Translates language codes to human-readable labels
     func label(for code: String) -> String {
         switch code {
-        case "fr": return "Français"
-        case "en": return "English"
-        case "sp": return "Español"
-        case "ca": return "Catalán"
+        case "fr": return NSLocalizedString("French", comment: "French language name")
+        case "en": return NSLocalizedString("English", comment: "English language name")
+        case "es": return NSLocalizedString("Spanish", comment: "Spanish language name")
+        case "ca": return NSLocalizedString("Catalan", comment: "Catalan language name")
         default: return code
         }
     }

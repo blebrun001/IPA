@@ -4,6 +4,154 @@
     "" : {
 
     },
+    " (tiled scan, %d tile(s))" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (escaneig en mosaic, %d mosaic(s))"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (tiled scan, %d tile(s))"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (escaneado en mosaico, %d mosaico(s))"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (analyse par tuiles, %d tuile(s))"
+          }
+        }
+      }
+    },
+    ":" : {
+
+    },
+    "%.2f" : {
+      "comment" : "Two-decimal duration",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.2f"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.2f"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.2f"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.2f"
+          }
+        }
+      }
+    },
+    "%.2fx" : {
+      "comment" : "Zoom scale indicator",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.2fx"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.2fx"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.2fx"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.2fx"
+          }
+        }
+      }
+    },
+    "%@ – side %@ cm • diagonal %@ cm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ – costat %@ cm • diagonal %@ cm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ – side %@ cm • diagonal %@ cm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ – lado %@ cm • diagonal %@ cm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ – côté %@ cm • diagonale %@ cm"
+          }
+        }
+      }
+    },
+    "%@ = %@ cm (diag. %@ cm)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ = %@ cm (diag. %@ cm)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ = %@ cm (diag. %@ cm)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ = %@ cm (diag. %@ cm)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ = %@ cm (diag. %@ cm)"
+          }
+        }
+      }
+    },
     "%lld selected elements" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -19,48 +167,22 @@
             "value" : "%lld selected elements"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld elementos seleccionados"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld éléments sélectionnés"
           }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld elementos seleccionados"
-          }
         }
       }
     },
     "%lld%%" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld%%"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld%%"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld%%"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld%%"
-          }
-        }
-      }
+      "comment" : "Progress percentage"
     },
     "© 2025 Brice Lebrun" : {
       "extractionState" : "manual",
@@ -77,16 +199,45 @@
             "value" : "© 2025 Brice Lebrun"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "© 2025 Brice Lebrun"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "© 2025 Brice Lebrun"
+          }
+        }
+      }
+    },
+    "3D creation" : {
+      "comment" : "Sidebar group title for 3D creation tools",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creació 3D"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3D creation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creación 3D"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Création 3D"
           }
         }
       }
@@ -106,50 +257,22 @@
             "value" : "3D model name"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nom du modèle 3D"
-          }
-        },
-        "sp" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombre del modelo 3D"
           }
-        }
-      }
-    },
-    "3D model name:" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nom del model 3D"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3D model name:"
-          }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nom du modèle 3D"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nombre del modelo 3D:"
           }
         }
       }
     },
     "Activate sounds" : {
+      "comment" : "Toggle to enable sound effects",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -163,16 +286,16 @@
             "value" : "Activate sounds"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar sonidos\n"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activer les effets sonores"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activar sonidos\n"
           }
         }
       }
@@ -192,16 +315,16 @@
             "value" : "Add a folder"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir una carpeta"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un dossier"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Agregar una carpeta"
           }
         }
       }
@@ -221,16 +344,16 @@
             "value" : "Add a name"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir un nombre"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un nom"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añadir un nombre"
           }
         }
       }
@@ -250,21 +373,51 @@
             "value" : "Add a term"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir un término"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un terme"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Add this size" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agregar un término"
+            "value" : "Afegeix aquesta mida"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add this size"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir este tamaño"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter cette taille"
           }
         }
       }
     },
     "Adresse du Dataverse par défaut:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -278,21 +431,80 @@
             "value" : "Default Dataverse adress"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Dirección predeterminada de Dataverse:\n"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adresse du Dataverse par défaut:"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Adult" : {
+      "comment" : "Life stage option adult",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Dirección predeterminada de Dataverse:\n"
+            "state" : "translated",
+            "value" : "Adult"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adult"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adulto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adulte"
+          }
+        }
+      }
+    },
+    "Analyzing texture..." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analitzant la textura..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analyzing texture..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analizando la textura..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analyse de la texture..."
           }
         }
       }
     },
     "Annuler" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -306,21 +518,22 @@
             "value" : "Cancel"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler"
           }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancelar"
-          }
         }
       }
     },
     "AO" : {
+      "comment" : "Toggle label for deleting ambient occlusion files",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -334,13 +547,13 @@
             "value" : "AO"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "AO"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "AO"
@@ -363,16 +576,16 @@
             "value" : "API response:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respuesta de la API"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réponse de l'API"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Respuesta de la API"
           }
         }
       }
@@ -392,16 +605,45 @@
             "value" : "API Token"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token de API"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jeton API"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Area: %d px^2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Token de API"
+            "value" : "Àrea: %d px^2"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Area: %d px^2"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Área: %d px^2"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surface : %d px^2"
           }
         }
       }
@@ -421,16 +663,104 @@
             "value" : "Authorship:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autoría"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Auteur :"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Authorship: %@\n" : {
+      "comment" : "README line for authorship",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autoría"
+            "value" : "Autoria: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authorship: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autoría: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auteur(s) : %@\n"
+          }
+        }
+      }
+    },
+    "Auto" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto"
+          }
+        }
+      }
+    },
+    "Auto Scale" : {
+      "comment" : "Sidebar entry for semi-automatic scaling",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escalat automàtic"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto Scale"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escalado automático"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mise à l'échelle automatique"
           }
         }
       }
@@ -441,7 +771,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Generar automàticament un terme únic"
+            "value" : "Genera automàticament un terme únic"
           }
         },
         "en" : {
@@ -450,16 +780,16 @@
             "value" : "Automatically generate unique term"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generar automáticamente un término único"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Générer automatiquement un terme unique"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Generar automáticamente un término único"
           }
         }
       }
@@ -479,16 +809,16 @@
             "value" : "Blur threshold:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umbral de desenfoque"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seuil de flou"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Umbral de desenfoque"
           }
         }
       }
@@ -508,21 +838,51 @@
             "value" : "Bone"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hueso"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Os"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Bone Folder" : {
+      "comment" : "Sidebar entry for bone folder utility",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hueso"
+            "value" : "Carpeta òssia"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bone Folder"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carpeta ósea"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dossier osseux"
           }
         }
       }
     },
     "Bone name (UBERON)" : {
+      "comment" : "Section title for bone name input",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -536,16 +896,16 @@
             "value" : "Bone name (UBERON)"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom de l’os (UBERON)"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "nom de l’os (UBERON)"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nom de l’os (UBERON)"
           }
         }
       }
@@ -565,21 +925,167 @@
             "value" : "Calibrated measure (cm):"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medida calibrada (cm):"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mesure calibrée (cm)"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Cancel" : {
+      "comment" : "Cancel language change",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Medida calibrada (cm):"
+            "value" : "Cancel·la"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        }
+      }
+    },
+    "Catalan" : {
+      "comment" : "Catalan language name",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Català"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catalan"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catalán"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catalan"
+          }
+        }
+      }
+    },
+    "Catalan (CAT)" : {
+      "comment" : "Language option Catalan",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Català (CAT)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catalan (CAT)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catalán (CAT)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catalan (CAT)"
+          }
+        }
+      }
+    },
+    "Change language?" : {
+      "comment" : "Language picker confirmation title",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canviar l'idioma?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change language?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cambiar el idioma?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changer la langue ?"
+          }
+        }
+      }
+    },
+    "Change the application language." : {
+      "comment" : "Language picker tooltip",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canviar l'idioma de l'aplicació."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change the application language."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambiar el idioma de la aplicación."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changer la langue de l'application."
           }
         }
       }
     },
     "Changer la langue ?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -593,21 +1099,22 @@
             "value" : "Change language?"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cambiar el idioma?"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Change language?"
           }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Cambiar el idioma?"
-          }
         }
       }
     },
     "Changer la langue de l'application" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -621,16 +1128,16 @@
             "value" : "Change the application’s language"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambiar el idioma de la aplicación"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Changer la langue de l'application"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cambiar el idioma de la aplicación"
           }
         }
       }
@@ -650,16 +1157,133 @@
             "value" : "Choose"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elegir"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Click to inspect the target in detail." : {
+      "comment" : "Hint for inspecting detected target",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elegir"
+            "value" : "Fes clic per inspeccionar l'objectiu en detall."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click to inspect the target in detail."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haz clic para inspeccionar el objetivo en detalle."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez pour inspecter la cible en détail."
+          }
+        }
+      }
+    },
+    "Click to zoom and inspect the texture." : {
+      "comment" : "Hint for texture zoom",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fes clic per fer zoom i inspeccionar la textura."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click to zoom and inspect the texture."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haz clic para ampliar e inspeccionar la textura."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez pour zoomer et inspecter la texture."
+          }
+        }
+      }
+    },
+    "Close" : {
+      "comment" : "Button to close inspector view",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanca"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer"
+          }
+        }
+      }
+    },
+    "COMMENTS\n--------\n" : {
+      "comment" : "README header for comments",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "COMENTARIS\n-----------\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "COMMENTS\n--------\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "COMENTARIOS\n-----------\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "COMMENTAIRES\n------------\n"
           }
         }
       }
@@ -679,16 +1303,161 @@
             "value" : "Comments:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comentarios"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaires"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Compression error" : {
+      "comment" : "Error when ZIP compression fails",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comentarios"
+            "value" : "Error de compressió"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compression error"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de compresión"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur de compression"
+          }
+        }
+      }
+    },
+    "Compression error: %@" : {
+      "comment" : "Template for displaying compression errors",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de compressió: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compression error: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de compresión: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur de compression : %@"
+          }
+        }
+      }
+    },
+    "Computed distance: %.3f units" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distància calculada: %.3f unitats"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Computed distance: %.3f units"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distancia calculada: %.3f unidades"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance calculée : %.3f unités"
+          }
+        }
+      }
+    },
+    "Computing 3D distance..." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calculant la distància 3D..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Computing 3D distance..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calculando la distancia 3D..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calcul de la distance 3D..."
+          }
+        }
+      }
+    },
+    "Confidence: %.0f%%" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confiança: %.0f%%"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confidence: %.0f%%"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confianza: %.0f%%"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confiance : %.0f%%"
           }
         }
       }
@@ -708,21 +1477,52 @@
             "value" : "Contact:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contacto"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contact :"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Contact: %@\n" : {
+      "comment" : "README line for contact",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contacto"
+            "value" : "Contacte: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contacto: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact : %@\n"
           }
         }
       }
     },
     "Create 'photos' subfolder" : {
+      "comment" : "Toggle to create photos subfolder",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -736,51 +1536,109 @@
             "value" : "Create 'photos' subfolder"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear subcarpeta ‘fotos’"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Créer un sous-dossier « photos »"
           }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crear subcarpeta ‘fotos’"
-          }
         }
       }
     },
-    "Create foder" : {
-      "extractionState" : "stale",
+    "Create folder" : {
+      "comment" : "Button to create bone folder"
+    },
+    "Create new file (_scaled)" : {
+      "comment" : "Button to save scaled copy",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Crear carpeta"
+            "value" : "Crea un fitxer nou (_scaled)"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Create foder"
+            "value" : "Create new file (_scaled)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear archivo nuevo (_scaled)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Créer le dossier"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " Crear carpeta"
+            "value" : "Créer un nouveau fichier (_scaled)"
           }
         }
       }
     },
-    "Create folder" : {
-
+    "Custom %@ cm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalitzat %@ cm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom %@ cm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizado %@ cm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personnalisé %@ cm"
+          }
+        }
+      }
+    },
+    "Custom marker added: side %@ cm (diag. %@ cm)." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcador personalitzat afegit: costat %@ cm (diag. %@ cm)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom marker added: side %@ cm (diag. %@ cm)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcador personalizado añadido: lado %@ cm (diag. %@ cm)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marqueur personnalisé ajouté : côté %@ cm (diag. %@ cm)."
+          }
+        }
+      }
     },
     "Dataset DOI:" : {
       "extractionState" : "manual",
@@ -797,16 +1655,45 @@
             "value" : "Dataset DOI:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI del conjunto de datos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "DOI du jeu de données"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Dataset preparation" : {
+      "comment" : "Sidebar group title for dataset preparation tools",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DOI del conjunto de datos"
+            "value" : "Preparació de conjunts de dades"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dataset preparation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparación de conjuntos de datos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Préparation des jeux de données"
           }
         }
       }
@@ -826,16 +1713,75 @@
             "value" : "Dataset Title:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Título del conjunto de datos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titre du jeu de données"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Dataset Title: %@\n" : {
+      "comment" : "README line for dataset title",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Título del conjunto de datos"
+            "value" : "Títol del conjunt de dades: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dataset Title: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Título del conjunto de datos: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titre du jeu de données : %@\n"
+          }
+        }
+      }
+    },
+    "Dataverse Address" : {
+      "comment" : "Label for Dataverse URL field\nPlaceholder for Dataverse URL field",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adreça del Dataverse"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dataverse Address"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección de Dataverse"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adresse Dataverse"
           }
         }
       }
@@ -855,45 +1801,16 @@
             "value" : "Dataverse Addresse"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adresse Dataverse"
-          }
-        },
-        "sp" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dirección de Dataverse"
-          }
-        }
-      }
-    },
-    "Dataverse Addresse:" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adreça de Dataverse"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dataverse Addresse:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adresse Dataverse"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dirección de Dataverse"
           }
         }
       }
@@ -913,16 +1830,103 @@
             "value" : "Dataverse configuration"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuración de Dataverse"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configuration de Dataverse"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Dataverse Upload" : {
+      "comment" : "Sidebar entry for Dataverse upload module",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Configuración de Dataverse"
+            "value" : "Càrrega al Dataverse"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dataverse Upload"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carga en Dataverse"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téléversement Dataverse"
+          }
+        }
+      }
+    },
+    "Default API token:" : {
+      "comment" : "Settings field label for API token",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testimoni API per defecte:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default API token:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token API predeterminado:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeton API par défaut :"
+          }
+        }
+      }
+    },
+    "Default Dataverse address:" : {
+      "comment" : "Settings field label for Dataverse address",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adreça de Dataverse per defecte:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default Dataverse address:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección de Dataverse predeterminada:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adresse Dataverse par défaut :"
           }
         }
       }
@@ -942,16 +1946,16 @@
             "value" : "desired FPS"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FPS deseado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "FPS souhaité"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "FPS deseado"
           }
         }
       }
@@ -971,21 +1975,109 @@
             "value" : "Detail level"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nivel de detalle"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Niveau de détail"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Detect Micro QR Codes" : {
+      "comment" : "Button to launch Micro QR detection",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nivel de detalle"
+            "value" : "Detecta codis Micro QR"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detect Micro QR Codes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detectar códigos Micro QR"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détecter les codes Micro QR"
+          }
+        }
+      }
+    },
+    "Detected Micro QR Codes" : {
+      "comment" : "Section title listing detected codes",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codis Micro QR detectats"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detected Micro QR Codes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Códigos Micro QR detectados"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codes Micro QR détectés"
+          }
+        }
+      }
+    },
+    "Detection error: %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de detecció: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detection error: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de detección: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur de détection : %@"
           }
         }
       }
     },
     "Disp" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -999,16 +2091,74 @@
             "value" : "Disp"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Disp"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Disp"
+          }
+        }
+      }
+    },
+    "Displacement" : {
+      "comment" : "Toggle label for deleting displacement maps",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desplaçament"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Displacement"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desplazamiento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déplacement"
+          }
+        }
+      }
+    },
+    "DOI (e.g. https://doi.org/10.34810/data1785)" : {
+      "comment" : "Placeholder example for dataset DOI",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI (p. ex. https://doi.org/10.34810/data1785)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI (e.g. https://doi.org/10.34810/data1785)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI (p. ej. https://doi.org/10.34810/data1785)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI (ex. https://doi.org/10.34810/data1785)"
           }
         }
       }
@@ -1028,16 +2178,16 @@
             "value" : "DOI (ex: https://doi.org/10.34810/data1785)"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI (ej: https://doi.org/10.34810/data1785)"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "DOI (ex : https://doi.org/10.34810/data1785)"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DOI (ej: https://doi.org/10.34810/data1785)"
           }
         }
       }
@@ -1057,21 +2207,226 @@
             "value" : "DOI:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI:"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "DOI :"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "DOI: %@\n" : {
+      "comment" : "README line for DOI",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DOI:"
+            "value" : "DOI: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DOI : %@\n"
+          }
+        }
+      }
+    },
+    "e.g. 12.5" : {
+      "comment" : "Placeholder for manual measurement input",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "p. ex. 12,5"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g. 12.5"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "p. ej. 12,5"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ex. 12,5"
+          }
+        }
+      }
+    },
+    "English" : {
+      "comment" : "English language name",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anglès"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inglés"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anglais"
+          }
+        }
+      }
+    },
+    "English (ENG)" : {
+      "comment" : "Language option English",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anglès (ENG)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English (ENG)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inglés (ENG)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anglais (ENG)"
+          }
+        }
+      }
+    },
+    "Enter the QR code side length in centimeters. The diagonal is computed automatically." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indica la longitud d'un costat del codi QR en centímetres. La diagonal es calcula automàticament."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the QR code side length in centimeters. The diagonal is computed automatically."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce el lado del código QR en centímetros. La diagonal se calcula automáticamente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indiquez la longueur d'un côté du code QR en centimètres. La diagonale est calculée automatiquement."
+          }
+        }
+      }
+    },
+    "Error: %@" : {
+      "comment" : "Template for displaying generation errors\nTemplate for displaying scaling errors\nTemplate for displaying upload errors\nTemplate for reporting folder creation errors",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur : %@"
+          }
+        }
+      }
+    },
+    "Existing marker selected: side %@ cm." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcador existent seleccionat: costat %@ cm."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Existing marker selected: side %@ cm."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcador existente seleccionado: lado %@ cm."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marqueur existant sélectionné : côté %@ cm."
           }
         }
       }
     },
     "Export format" : {
+      "comment" : "Picker label for export format",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -1085,16 +2440,16 @@
             "value" : "Export format"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formato de exportación"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Format d’exportation"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Formato de exportación"
           }
         }
       }
@@ -1114,16 +2469,16 @@
             "value" : "Export format:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formato de exportación"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Format d'exportation"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Formato de exportación"
           }
         }
       }
@@ -1143,16 +2498,16 @@
             "value" : "Extract frames"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extraer fotogramas"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extraire les images"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Extraer fotogramas"
           }
         }
       }
@@ -1172,21 +2527,51 @@
             "value" : "Extract measure"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extraer medida"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extraire la mesure"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Female" : {
+      "comment" : "Sex option female",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Extraer medida"
+            "value" : "Femella"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Female"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hembra"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Femelle"
           }
         }
       }
     },
     "Fichiers à supprimer après export" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -1200,16 +2585,278 @@
             "value" : "Files to delet after creation"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archivos a eliminar tras exportar"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichiers à supprimer après export"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "File not found." : {
+      "comment" : "Error when OBJ file is missing",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Archivos a eliminar tras exportar"
+            "state" : "translated",
+            "value" : "Fitxer no trobat."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File not found."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archivo no encontrado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier introuvable."
+          }
+        }
+      }
+    },
+    "Files management" : {
+      "comment" : "Sidebar group title for file management tools",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestió de fitxers"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Files management"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestión de archivos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestion des fichiers"
+          }
+        }
+      }
+    },
+    "Files to delete after export" : {
+      "comment" : "Label for cleanup toggles",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitxers a suprimir després de l'exportació"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Files to delete after export"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archivos a eliminar después de la exportación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichiers à supprimer après export"
+          }
+        }
+      }
+    },
+    "Fill all fields." : {
+      "comment" : "Error when folder structure form incomplete",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omple tots els camps."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fill all fields."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rellena todos los campos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remplissez tous les champs."
+          }
+        }
+      }
+    },
+    "Fill term and number." : {
+      "comment" : "Error when single term inputs missing",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completa el terme i el nombre."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fill term and number."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completa el término y el número."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renseignez le terme et le nombre."
+          }
+        }
+      }
+    },
+    "Fill terms." : {
+      "comment" : "Error when no manual terms provided",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afegeix termes."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fill terms."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade términos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez des termes."
+          }
+        }
+      }
+    },
+    "Folder created: %@" : {
+      "comment" : "Status when folder is created",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carpeta creada: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder created: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carpeta creada: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dossier créé : %@"
+          }
+        }
+      }
+    },
+    "Folder Size (GB):" : {
+      "comment" : "Label for folder size field",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mida de la carpeta (GB):"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder Size (GB):"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño de la carpeta (GB):"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taille du dossier (Go) :"
+          }
+        }
+      }
+    },
+    "Folder Size (GB): %@\n" : {
+      "comment" : "README line for folder size",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mida de la carpeta (GB): %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder Size (GB): %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño de la carpeta (GB): %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taille du dossier (Go) : %@\n"
           }
         }
       }
@@ -1229,16 +2876,74 @@
             "value" : "Folder Size (Go):"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño de la carpeta (Go):"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Taille du dossier (Go)"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Folder Structure" : {
+      "comment" : "Sidebar entry for folder structure generator",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tamaño de la carpeta (Go):"
+            "value" : "Estructura de carpetes"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder Structure"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estructura de carpetas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Structure de dossiers"
+          }
+        }
+      }
+    },
+    "Folder structure generated successfully." : {
+      "comment" : "Status after creating folder structure",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estructura de carpetes generada correctament."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder structure generated successfully."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estructura de carpetas generada correctamente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Structure de dossiers générée avec succès."
           }
         }
       }
@@ -1258,16 +2963,74 @@
             "value" : "FPS"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FPS"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Image par seconde"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "French" : {
+      "comment" : "French language name",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "FPS"
+            "value" : "Francès"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "French"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Francés"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Français"
+          }
+        }
+      }
+    },
+    "French (FRA)" : {
+      "comment" : "Language option French",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Francès (FRA)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "French (FRA)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Francés (FRA)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Français (FRA)"
           }
         }
       }
@@ -1287,21 +3050,22 @@
             "value" : "Full"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Complet"
           }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Completo"
-          }
         }
       }
     },
     "General" : {
+      "comment" : "Settings section title",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -1315,16 +3079,46 @@
             "value" : "General"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "General"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "General"
+          }
+        }
+      }
+    },
+    "GENERAL INFORMATION\n-------------------\n" : {
+      "comment" : "README header for general information",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INFORMACIÓ GENERAL\n---------------------\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GENERAL INFORMATION\n-------------------\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INFORMACIÓN GENERAL\n---------------------\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INFORMATIONS GÉNÉRALES\n------------------------\n"
           }
         }
       }
@@ -1344,16 +3138,16 @@
             "value" : "Generate README"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generar README"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Générer README"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Generar README"
           }
         }
       }
@@ -1364,7 +3158,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Generar estructura"
+            "value" : "Genera l'estructura"
           }
         },
         "en" : {
@@ -1373,16 +3167,16 @@
             "value" : "Generate structure"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generar estructura"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Générer la structure"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Generar estructura"
           }
         }
       }
@@ -1402,16 +3196,45 @@
             "value" : "Generate thumbnail"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generar miniatura"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Générer une vignette"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Hermaphrodite" : {
+      "comment" : "Sex option hermaphrodite",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Generar miniatura"
+            "value" : "Hermafrodita"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hermaphrodite"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hermafrodita"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hermaphrodite"
           }
         }
       }
@@ -1431,16 +3254,45 @@
             "value" : "High"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alto"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Élevée"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "HTTP error: %d" : {
+      "comment" : "Error when server returns non-200 code",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alto"
+            "value" : "Error HTTP: %d"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP error: %d"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error HTTP: %d"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur HTTP : %d"
           }
         }
       }
@@ -1460,16 +3312,16 @@
             "value" : "Include environment"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluir entorno"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inclure l'environnement"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Incluir entorno"
           }
         }
       }
@@ -1489,16 +3341,16 @@
             "value" : "Include video name"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluir nombre del video"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inclure le nom de la vidéo"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Incluir nombre del video"
           }
         }
       }
@@ -1518,16 +3370,74 @@
             "value" : "Integrated Photogrammetry Assistant"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Integrated Photogrammetry Assistant"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Integrated Photogrammetry Assistant"
+          }
+        }
+      }
+    },
+    "Invalid Dataverse address." : {
+      "comment" : "Error when Dataverse URL is invalid",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adreça de Dataverse no vàlida."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid Dataverse address."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección de Dataverse no válida."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adresse Dataverse invalide."
+          }
+        }
+      }
+    },
+    "Invalid response" : {
+      "comment" : "Fallback when response cannot be decoded",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resposta no vàlida"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid response"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respuesta no válida"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réponse invalide"
           }
         }
       }
@@ -1547,13 +3457,13 @@
             "value" : "IPA"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IPA"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IPA"
@@ -1576,21 +3486,22 @@
             "value" : "Isolate from environment"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aislar del entorno"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Isoler de l'environnement"
           }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aislar del entorno"
-          }
         }
       }
     },
     "Jeton de l'API par défaut:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -1604,21 +3515,51 @@
             "value" : "Default token API"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Token API predeterminado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jeton de l’API prédéterminé"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Juvenile" : {
+      "comment" : "Life stage option juvenile",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Token API predeterminado"
+            "state" : "translated",
+            "value" : "Juvenil"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Juvenile"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Juvenil"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Juvenile"
           }
         }
       }
     },
     "L'application va redémarrer pour appliquer la langue." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -1632,16 +3573,45 @@
             "value" : "The application will reboot to apply language."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La aplicación se reiniciará para aplicar el idioma."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "L'application va redémarrer pour appliquer la langue."
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Language" : {
+      "comment" : "Toolbar language picker label",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La aplicación se reiniciará para aplicar el idioma."
+            "value" : "Idioma"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Idioma"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langue"
           }
         }
       }
@@ -1661,21 +3631,52 @@
             "value" : "Language:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Idioma"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Langue"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Language: %@\n" : {
+      "comment" : "README line for language",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Idioma"
+            "value" : "Idioma: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Idioma: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langue : %@\n"
           }
         }
       }
     },
     "Langue" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -1689,16 +3690,16 @@
             "value" : "Language"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Idioma"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Langue"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Idioma"
           }
         }
       }
@@ -1718,16 +3719,46 @@
             "value" : "Licence:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencia"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licence"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Licence: %@\n" : {
+      "comment" : "README line for licence",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licencia"
+            "value" : "Llicència: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencia: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence : %@\n"
           }
         }
       }
@@ -1747,16 +3778,46 @@
             "value" : "Life Stage:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etapa de vida"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stade de vie"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Life Stage: %@\n" : {
+      "comment" : "README line for life stage",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Etapa de vida"
+            "value" : "Estadi vital: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Life Stage: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etapa vital: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stade de vie : %@\n"
           }
         }
       }
@@ -1775,16 +3836,161 @@
             "value" : "Low"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bajo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Basse"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Main folder read error: %@" : {
+      "comment" : "Status when reading main folder fails",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bajo"
+            "state" : "translated",
+            "value" : "Error en llegir la carpeta principal: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Main folder read error: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error al leer la carpeta principal: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur de lecture du dossier principal : %@"
+          }
+        }
+      }
+    },
+    "Male" : {
+      "comment" : "Sex option male",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mascle"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Male"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macho"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mâle"
+          }
+        }
+      }
+    },
+    "Manual measurement (3D units)" : {
+      "comment" : "Title for manual measurement override",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesura manual (unitats 3D)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manual measurement (3D units)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medición manual (unidades 3D)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesure manuelle (unités 3D)"
+          }
+        }
+      }
+    },
+    "Marker" : {
+      "comment" : "Picker label for marker type",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcador"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marker"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcador"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marqueur"
+          }
+        }
+      }
+    },
+    "Marker Type" : {
+      "comment" : "Section title for marker selection",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipus de marcador"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marker Type"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de marcador"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type de marqueur"
           }
         }
       }
@@ -1804,16 +4010,16 @@
             "value" : "Mask:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Máscara"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Masque"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Máscara"
           }
         }
       }
@@ -1833,16 +4039,161 @@
             "value" : "Medium"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medio"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moyen"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Micro QR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Medio"
+            "value" : "Micro QR"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Micro QR"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Micro QR"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Micro QR"
+          }
+        }
+      }
+    },
+    "Micro QR Detection" : {
+      "comment" : "Section title for Micro QR detection",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detecció Micro QR"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Micro QR Detection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detección Micro QR"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détection Micro QR"
+          }
+        }
+      }
+    },
+    "Micro QR detection failed on the texture." : {
+      "comment" : "Auto Scale error when barcode detection fails",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La detecció de Micro QR ha fallat a la textura."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Micro QR detection failed on the texture."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La detección de Micro QR falló en la textura."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La détection Micro QR a échoué sur la texture."
+          }
+        }
+      }
+    },
+    "Missing folder or selected bone." : {
+      "comment" : "Error when folder or bone selection is missing",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falta la carpeta o l'os seleccionat."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Missing folder or selected bone."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falta la carpeta o el hueso seleccionado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dossier ou os sélectionné manquant."
+          }
+        }
+      }
+    },
+    "Mode" : {
+      "comment" : "Picker label for detection mode",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode"
           }
         }
       }
@@ -1862,16 +4213,16 @@
             "value" : "Names to replace:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombres para reemplazar"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noms à remplacer"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nombres para reemplazar"
           }
         }
       }
@@ -1891,45 +4242,16 @@
             "value" : "New name"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nouveau nom"
-          }
-        },
-        "sp" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nuevo nombre"
-          }
-        }
-      }
-    },
-    "New name:" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nou nom"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New name:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouveau nom"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nuevo nombre"
           }
         }
       }
@@ -1949,16 +4271,103 @@
             "value" : "no"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "no"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "non"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "No 'photos' folder in selected sub-folder." : {
+      "comment" : "Status when photos folder missing",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "no"
+            "value" : "No hi ha cap carpeta «photos» a la subcarpeta seleccionada."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No 'photos' folder in selected sub-folder."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay carpeta «photos» en la subcarpeta seleccionada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun dossier « photos » dans le sous-dossier sélectionné."
+          }
+        }
+      }
+    },
+    "No codes detected." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s'han detectat codis."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No codes detected."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se detectaron códigos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun code détecté."
+          }
+        }
+      }
+    },
+    "No data received." : {
+      "comment" : "Error when HTTP response has no data",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s'han rebut dades."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No data received."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se recibieron datos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune donnée reçue."
           }
         }
       }
@@ -1978,16 +4387,45 @@
             "value" : "No file selected"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ningún archivo seleccionado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun fichier sélectionné"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "No file to upload." : {
+      "comment" : "Status when no file is available for upload",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se ha seleccionado ningún archivo"
+            "value" : "No hi ha cap fitxer per penjar."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No file to upload."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay archivo para cargar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun fichier à téléverser."
           }
         }
       }
@@ -2007,16 +4445,190 @@
             "value" : "No folder selected."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha seleccionado ninguna carpeta."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun dossier sélectionné."
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "No mesh vertices overlap with the detected region." : {
+      "comment" : "Auto Scale error when mesh has no vertices in region",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se ha seleccionado ninguna carpeta."
+            "value" : "Cap vèrtex de la malla coincideix amb la regió detectada."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No mesh vertices overlap with the detected region."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ningún vértice de la malla coincide con la región detectada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun sommet du maillage ne recoupe la région détectée."
+          }
+        }
+      }
+    },
+    "No Micro QR markers detected with the current settings." : {
+      "comment" : "Auto Scale error when nothing detected",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s'han detectat marcadors Micro QR amb la configuració actual."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Micro QR markers detected with the current settings."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se detectaron marcadores Micro QR con la configuración actual."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun marqueur Micro QR détecté avec les paramètres actuels."
+          }
+        }
+      }
+    },
+    "No response received." : {
+      "comment" : "Error when no HTTP response is returned",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s'ha rebut cap resposta."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No response received."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se recibió respuesta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune réponse reçue."
+          }
+        }
+      }
+    },
+    "No target selected" : {
+      "comment" : "Message when no target is selected",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cap objectiu seleccionat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No target selected"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ningún objetivo seleccionado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune cible sélectionnée"
+          }
+        }
+      }
+    },
+    "No texture available" : {
+      "comment" : "Message when no texture is available for preview",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hi ha textura disponible"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No texture available"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay textura disponible"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune texture disponible"
+          }
+        }
+      }
+    },
+    "No texture selected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cap textura seleccionada"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No texture selected"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ninguna textura seleccionada"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune texture sélectionnée"
           }
         }
       }
@@ -2035,16 +4647,16 @@
             "value" : "None"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No"
           }
         }
       }
@@ -2064,13 +4676,13 @@
             "value" : "Normal"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Normal"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Normal"
@@ -2093,16 +4705,46 @@
             "value" : "Number of Files:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de archivos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombre de fichiers"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Number of Files: %@\n" : {
+      "comment" : "README line for file count",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Número de archivos"
+            "value" : "Nombre de fitxers: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of Files: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de archivos: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre de fichiers : %@\n"
           }
         }
       }
@@ -2122,16 +4764,16 @@
             "value" : "Number of folders"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de carpetas"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombre de dossiers"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Número de carpetas"
           }
         }
       }
@@ -2151,16 +4793,46 @@
             "value" : "Number of Scanned Items:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de artículos escaneados"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombre d'articles scannés"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Number of Scanned Items: %@\n" : {
+      "comment" : "README line for scanned items",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Número de artículos escaneados"
+            "value" : "Nombre d'elements escanejats: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of Scanned Items: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de elementos escaneados: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre d'éléments numérisés : %@\n"
           }
         }
       }
@@ -2180,16 +4852,132 @@
             "value" : "OBJ"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OBJ"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OBJ"
+          }
+        }
+      }
+    },
+    "OBJ File" : {
+      "comment" : "Section title for selecting OBJ file",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitxer OBJ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBJ File"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archivo OBJ"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier OBJ"
+          }
+        }
+      }
+    },
+    "OBJ Renamer" : {
+      "comment" : "Sidebar entry for OBJ renaming tool",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reanomenador OBJ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBJ Renamer"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renombrador OBJ"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renommeur OBJ"
+          }
+        }
+      }
+    },
+    "OBJ Scaling" : {
+      "comment" : "Sidebar entry for OBJ scaling module",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escalat OBJ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBJ Scaling"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escalado OBJ"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mise à l'échelle OBJ"
+          }
+        }
+      }
+    },
+    "OBJ selected: %@. Select a texture to continue." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBJ seleccionat: %@. Selecciona una textura per continuar."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBJ selected: %@. Select a texture to continue."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBJ seleccionado: %@. Selecciona una textura para continuar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OBJ sélectionné : %@. Sélectionnez une texture pour continuer."
           }
         }
       }
@@ -2208,16 +4996,16 @@
             "value" : "Old name"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre antiguo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ancien nom"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nombre antiguo"
           }
         }
       }
@@ -2236,16 +5024,45 @@
             "value" : "Old name:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre antiguo:"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ancien nom"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Overwrite original" : {
+      "comment" : "Button to overwrite the original file",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nombre antiguo:"
+            "value" : "Sobreescriu l'original"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overwrite original"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobrescribir original"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Écraser l'original"
           }
         }
       }
@@ -2265,16 +5082,45 @@
             "value" : "Overwrite original file"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobrescribir archivo original"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Écraser le fichier original"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Photogrammetry" : {
+      "comment" : "Sidebar entry for photogrammetry tools",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sobrescribir archivo original"
+            "value" : "Fotogrametria"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photogrammetry"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fotogrametría"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photogrammétrie"
           }
         }
       }
@@ -2294,16 +5140,161 @@
             "value" : "Photos order"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordre de les fotos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ordre des photos"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Pinch or use the slider to zoom. Drag to pan. Double-click to reset." : {
+      "comment" : "Instructions for zoom controls",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ordre de les fotos"
+            "value" : "Pellizca o utilitza el control lliscant per fer zoom. Arrossega per desplaçar. Fes doble clic per reinicialitzar."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinch or use the slider to zoom. Drag to pan. Double-click to reset."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pellizca o usa el control deslizante para ampliar. Arrastra para desplazar. Haz doble clic para restablecer."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pincez ou utilisez le curseur pour zoomer. Faites glisser pour déplacer. Double-cliquez pour réinitialiser."
+          }
+        }
+      }
+    },
+    "Please select a file and numerical value." : {
+      "comment" : "Error when input values are invalid",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un fitxer i un valor numèric."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please select a file and numerical value."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un archivo y un valor numérico."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veuillez sélectionner un fichier et une valeur numérique."
+          }
+        }
+      }
+    },
+    "Please select a texture file." : {
+      "comment" : "Auto Scale error for missing texture",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un fitxer de textura."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please select a texture file."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un archivo de textura."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veuillez sélectionner un fichier de texture."
+          }
+        }
+      }
+    },
+    "Please select an OBJ file." : {
+      "comment" : "Auto Scale error for missing OBJ",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un fitxer OBJ."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please select an OBJ file."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un archivo OBJ."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veuillez sélectionner un fichier OBJ."
+          }
+        }
+      }
+    },
+    "Please select main folder and sub-folder containing a 'photos' folder." : {
+      "comment" : "Status when folder selection is incomplete",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona una carpeta principal i una subcarpeta que contingui una carpeta «photos»."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please select main folder and sub-folder containing a 'photos' folder."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona una carpeta principal y una subcarpeta que contenga una carpeta «photos»."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veuillez sélectionner un dossier principal et un sous-dossier contenant un dossier « photos »."
           }
         }
       }
@@ -2323,16 +5314,16 @@
             "value" : "Preview"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vista previa"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aperçu"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vista previa"
           }
         }
       }
@@ -2352,16 +5343,103 @@
             "value" : "Process"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proceso"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Processus"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Process stopped by user." : {
+      "comment" : "Status when user stops photogrammetry",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Proceso"
+            "value" : "Procés aturat per l'usuari."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Process stopped by user."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proceso detenido por el usuario."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Processus arrêté par l'utilisateur."
+          }
+        }
+      }
+    },
+    "Processed in %@ sec. File: %@" : {
+      "comment" : "Status after photogrammetry completes",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Processat en %@ s. Fitxer: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Processed in %@ sec. File: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesado en %@ s. Archivo: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traitement en %@ s. Fichier : %@"
+          }
+        }
+      }
+    },
+    "Processing" : {
+      "comment" : "Status while photogrammetry is running",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Processant"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Processing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesando"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traitement en cours"
           }
         }
       }
@@ -2381,21 +5459,80 @@
             "value" : "Raw"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crudo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Brut"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "README generated: %@" : {
+      "comment" : "Message when README has been generated",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Crudo"
+            "value" : "README generat: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "README generated: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "README generado: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "README généré : %@"
+          }
+        }
+      }
+    },
+    "README Generator" : {
+      "comment" : "Sidebar entry for README generator",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generador de README"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "README Generator"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generador de README"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Générateur de README"
           }
         }
       }
     },
     "Redémarrer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -2409,16 +5546,16 @@
             "value" : "Restart"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reiniciar"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Redémarrer"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reiniciar"
           }
         }
       }
@@ -2438,16 +5575,16 @@
             "value" : "Reduced"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reducido"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réduit"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reducido"
           }
         }
       }
@@ -2467,16 +5604,16 @@
             "value" : "Reload page"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recargar página"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recharger la page"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recargar página"
           }
         }
       }
@@ -2496,21 +5633,80 @@
             "value" : "Rename"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renombrar"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Renommer"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Reset" : {
+      "comment" : "Button to reset zoom and offset",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Renombrar"
+            "value" : "Restableix"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restablecer"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réinitialiser"
+          }
+        }
+      }
+    },
+    "Restart" : {
+      "comment" : "Confirm language change and restart",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reinicia"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restart"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reiniciar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redémarrer"
           }
         }
       }
     },
     "Rough" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -2524,16 +5720,219 @@
             "value" : "Rough"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rough"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rough"
+          }
+        }
+      }
+    },
+    "Roughness" : {
+      "comment" : "Toggle label for deleting roughness maps",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rugositat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roughness"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rugosidad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rugosité"
+          }
+        }
+      }
+    },
+    "Scaled file: %@" : {
+      "comment" : "Message after successful scaling",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitxer escalat: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scaled file: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archivo escalado: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier mis à l'échelle : %@"
+          }
+        }
+      }
+    },
+    "Scaled model saved: %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model escalat desat: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scaled model saved: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modelo escalado guardado: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modèle mis à l'échelle enregistré : %@"
+          }
+        }
+      }
+    },
+    "Scaling" : {
+      "comment" : "Section title for scaling actions",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escalat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scaling"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escalado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mise à l'échelle"
+          }
+        }
+      }
+    },
+    "Scaling model..." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escalant el model..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scaling model..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escalando el modelo..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mise à l'échelle du modèle..."
+          }
+        }
+      }
+    },
+    "Select a detected target to start the computation." : {
+      "comment" : "Instruction when no target selected",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un objectiu detectat per iniciar el càlcul."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a detected target to start the computation."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un objetivo detectado para iniciar el cálculo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez une cible détectée pour lancer le calcul."
+          }
+        }
+      }
+    },
+    "Select a folder." : {
+      "comment" : "Warning when no folder selected",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona una carpeta."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a folder."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona una carpeta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez un dossier."
           }
         }
       }
@@ -2553,16 +5952,16 @@
             "value" : "Select a video"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un video"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionnez une vidéo"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selecciona un video"
           }
         }
       }
@@ -2582,16 +5981,16 @@
             "value" : "Select base directory"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sélectionner le répertoire de base"
-          }
-        },
-        "sp" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seleccionar directorio base"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner le dossier de base"
           }
         }
       }
@@ -2611,16 +6010,16 @@
             "value" : "Select entry folder"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar carpeta de entrada"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner le dossier d'entrée"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleccionar carpeta de entrada"
           }
         }
       }
@@ -2640,16 +6039,16 @@
             "value" : "Select folder"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar carpeta"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner le dossier"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleccionar carpeta"
           }
         }
       }
@@ -2668,16 +6067,16 @@
             "value" : "Select folder"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seleccionar carpeta"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner dossier"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Seleccionar carpeta"
           }
         }
       }
@@ -2697,16 +6096,16 @@
             "value" : "Select folder/file"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar carpeta/archivo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner un dossier/fichier"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleccionar carpeta/archivo"
           }
         }
       }
@@ -2726,16 +6125,45 @@
             "value" : "Select OBJ file"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar archivo OBJ"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner le fichier OBJ"
           }
+        }
+      }
+    },
+    "Select OBJ File" : {
+      "comment" : "Button to pick an OBJ file",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un fitxer OBJ"
+          }
         },
-        "sp" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select OBJ File"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seleccionar archivo OBJ"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner un fichier OBJ"
           }
         }
       }
@@ -2755,16 +6183,16 @@
             "value" : "Select output folder"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar carpeta de salida"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner le dossier de sortie"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleccionar carpeta de salida"
           }
         }
       }
@@ -2784,16 +6212,103 @@
             "value" : "Select photo folder"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar carpeta de fotos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner le dossier de photos"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Select Texture" : {
+      "comment" : "Button to pick a texture file",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccionar carpeta de fotos"
+            "value" : "Selecciona una textura"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Texture"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar textura"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner une texture"
+          }
+        }
+      }
+    },
+    "Selected target: %@" : {
+      "comment" : "Label for selected detection",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objectiu seleccionat: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected target: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objetivo seleccionado: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cible sélectionnée : %@"
+          }
+        }
+      }
+    },
+    "Senescent" : {
+      "comment" : "Life stage option senescent",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senescent"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senescent"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senescente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sénescent"
           }
         }
       }
@@ -2813,16 +6328,16 @@
             "value" : "Sensitivity:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensibilidad"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensibilité"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensibilidad"
           }
         }
       }
@@ -2842,16 +6357,45 @@
             "value" : "sequential"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "secuencial"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "séquentiel"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Sequential" : {
+      "comment" : "Sample ordering sequential",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "secuencial"
+            "value" : "Seqüencial"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sequential"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secuencial"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Séquentiel"
           }
         }
       }
@@ -2871,16 +6415,133 @@
             "value" : "Sex:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sexo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sexe"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Sex: %@\n" : {
+      "comment" : "README line for sex",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sexo"
+            "value" : "Sexe: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sex: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sexo: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sexe : %@\n"
+          }
+        }
+      }
+    },
+    "Side (cm)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Costat (cm)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Side (cm)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lado (cm)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Côté (cm)"
+          }
+        }
+      }
+    },
+    "Spanish" : {
+      "comment" : "Spanish language name",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espanyol"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spanish"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Español"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espagnol"
+          }
+        }
+      }
+    },
+    "Spanish (CAS)" : {
+      "comment" : "Language option Spanish",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espanyol (CAS)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spanish (CAS)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Español (CAS)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espagnol (CAS)"
           }
         }
       }
@@ -2900,45 +6561,133 @@
             "value" : "Specimen"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Especimen"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spécimen"
           }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Especimen"
-          }
         }
       }
     },
-    "Specimen:" : {
-      "extractionState" : "manual",
+    "Specimen: %@\n" : {
+      "comment" : "README line for specimen",
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Espècimen"
+            "value" : "Espècimen: %@\n"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Specimen:"
+            "value" : "Specimen: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Especimen: %@\n"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spécimen"
+            "value" : "Spécimen : %@\n"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Standard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Especimen"
+            "value" : "Estàndard"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estándar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        }
+      }
+    },
+    "Standard detection – %d code(s)." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detecció estàndard – %d codi(s)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard detection – %d code(s)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detección estándar – %d código(s)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détection standard – %d code(s)."
+          }
+        }
+      }
+    },
+    "Standard scans the full texture. Tiling splits the texture into tiles to detect tiny QR codes. Auto chooses for you." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard analitza tota la textura. Tiling divideix la textura en mosaics per detectar codis QR molt petits. Auto tria per tu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard scans the full texture. Tiling splits the texture into tiles to detect tiny QR codes. Auto chooses for you."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard analiza toda la textura. Tiling divide la textura en mosaicos para detectar QR muy pequeños. Auto elige por ti."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard analyse la texture entière. Tiling découpe la texture en tuiles pour détecter de très petits codes QR. Auto décide pour vous."
           }
         }
       }
@@ -2958,16 +6707,16 @@
             "value" : "Start"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comienzo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commencer"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comienzo"
           }
         }
       }
@@ -2987,16 +6736,16 @@
             "value" : "Start scaling"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comienza a escalar"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commencez à évoluer"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comienza a escalar"
           }
         }
       }
@@ -3016,16 +6765,46 @@
             "value" : "Stop"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detener"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arrête"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "STRUCTURE\n---------\n" : {
+      "comment" : "README header for structure",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detener"
+            "value" : "ESTRUCTURA\n----------\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "STRUCTURE\n---------\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ESTRUCTURA\n----------\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "STRUCTURE\n---------\n"
           }
         }
       }
@@ -3045,16 +6824,45 @@
             "value" : "Structure (one folder per line) :"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estructura (una carpeta por línea) :"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Structure (un dossier par ligne) :"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Structure (one folder per line):" : {
+      "comment" : "Heading for structure list",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estructura (una carpeta por línea) :"
+            "value" : "Estructura (una carpeta per línia):"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Structure (one folder per line):"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estructura (una carpeta por línea):"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Structure (un dossier par ligne) :"
           }
         }
       }
@@ -3074,16 +6882,45 @@
             "value" : "Structure:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estructura"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Structure"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Target Preview" : {
+      "comment" : "Section title for target preview\nTitle for enlarged target preview",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estructura"
+            "value" : "Previsualització de l'objectiu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target Preview"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vista previa del objetivo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aperçu de la cible"
           }
         }
       }
@@ -3103,16 +6940,75 @@
             "value" : "Technique Used:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Técnica utilizada"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Technique utilisée"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Technique Used: %@\n" : {
+      "comment" : "README line for technique",
+      "extractionState" : "stale",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Técnica utilizada"
+            "value" : "Tècnica utilitzada: %@\n"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Technique Used: %@\n"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Técnica utilizada: %@\n"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Technique utilisée : %@\n"
+          }
+        }
+      }
+    },
+    "Term name (e.g. Rib)" : {
+      "comment" : "Placeholder for base term",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom del terme (p. ex. Costella)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Term name (e.g. Rib)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre del término (p. ej. Costilla)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom du terme (ex. : Côte)"
           }
         }
       }
@@ -3132,16 +7028,16 @@
             "value" : "Term name (eg.: Rib)"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre del término (por ejemplo: Costilla)"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nom du terme (par exemple : Côte)"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nombre del término (por ejemplo: Costilla)"
           }
         }
       }
@@ -3161,16 +7057,74 @@
             "value" : "Terms :"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Términos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conditions"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Terms:" : {
+      "comment" : "Heading for manual term list",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Términos"
+            "value" : "Termes:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Términos:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termes :"
+          }
+        }
+      }
+    },
+    "Texture" : {
+      "comment" : "Section title for selecting texture",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textura"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texture"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textura"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texture"
           }
         }
       }
@@ -3190,16 +7144,190 @@
             "value" : "Texture compression:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compresión de texturas"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compression de texture"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Texture Preview" : {
+      "comment" : "Section title for texture preview\nTitle for enlarged texture preview",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compresión de texturas"
+            "value" : "Previsualització de la textura"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texture Preview"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vista previa de la textura"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aperçu de la texture"
+          }
+        }
+      }
+    },
+    "Texture selected: %@. Run Micro QR detection to proceed." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textura seleccionada: %@. Executa la detecció Micro QR per continuar."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texture selected: %@. Run Micro QR detection to proceed."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textura seleccionada: %@. Ejecuta la detección Micro QR para continuar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texture sélectionnée : %@. Lancez la détection Micro QR pour continuer."
+          }
+        }
+      }
+    },
+    "Texture: %@ – %d Micro QR code(s) detected%@." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textura: %@ – %d codi(s) Micro QR detectat(s)%@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texture: %@ – %d Micro QR code(s) detected%@."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textura: %@ – %d código(s) Micro QR detectado(s)%@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texture : %@ – %d code(s) Micro QR détecté(s)%@."
+          }
+        }
+      }
+    },
+    "The application will restart to apply the selected language." : {
+      "comment" : "Language picker confirmation message",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'aplicació es reiniciarà per aplicar l'idioma seleccionat."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The application will restart to apply the selected language."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La aplicación se reiniciará para aplicar el idioma seleccionado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'application redémarrera pour appliquer la langue sélectionnée."
+          }
+        }
+      }
+    },
+    "The detected distance is invalid." : {
+      "comment" : "Auto Scale error for invalid uncalibrated distance",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La distància detectada no és vàlida."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The detected distance is invalid."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La distancia detectada no es válida."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La distance détectée est invalide."
+          }
+        }
+      }
+    },
+    "The real-world measurement must be a valid number." : {
+      "comment" : "Auto Scale error for invalid manual real-world value",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La mesura real ha de ser un nombre vàlid."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The real-world measurement must be a valid number."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La medida real debe ser un número válido."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La mesure réelle doit être un nombre valide."
           }
         }
       }
@@ -3219,16 +7347,74 @@
             "value" : "Threshold"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umbral"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seuil"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Tiled detection – %d code(s) • %d tile(s)." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Umbral"
+            "value" : "Detecció en mosaic – %d codi(s) • %d mosaic(s)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiled detection – %d code(s) • %d tile(s)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detección en mosaico – %d código(s) • %d mosaico(s)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détection par tuiles – %d code(s) • %d tuile(s)."
+          }
+        }
+      }
+    },
+    "Tiling" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mosaic"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiling"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mosaico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuiles"
           }
         }
       }
@@ -3248,16 +7434,16 @@
             "value" : "Token:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jeton"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Token"
           }
         }
       }
@@ -3277,21 +7463,51 @@
             "value" : "Tools"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herramientas"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Outils"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Type %@ cm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Herramientas"
+            "value" : "Tipus %@ cm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type %@ cm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo %@ cm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type %@ cm"
           }
         }
       }
     },
     "type bone name" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -3305,16 +7521,74 @@
             "value" : "type bone name"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escriba el nombre del hueso"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "entrer le nom de l'os"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Type bone name" : {
+      "comment" : "Placeholder for bone name input",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escriba el nombre del hueso"
+            "value" : "Escriu el nom de l'os"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type bone name"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escribe el nombre del hueso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saisir le nom de l'os"
+          }
+        }
+      }
+    },
+    "Unable to load the selected texture." : {
+      "comment" : "Auto Scale error when texture fails to load",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s'ha pogut carregar la textura seleccionada."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to load the selected texture."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo cargar la textura seleccionada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger la texture sélectionnée."
           }
         }
       }
@@ -3334,16 +7608,161 @@
             "value" : "Uncalibrated measure:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medida no calibrada"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mesure non calibrée"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Uncalibrated Measurement" : {
+      "comment" : "Section title for measurement results",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Medida no calibrada"
+            "value" : "Mesura sense calibrar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uncalibrated Measurement"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medición sin calibrar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesure non calibrée"
+          }
+        }
+      }
+    },
+    "Uncalibrated measurement set manually: %@ units" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesura no calibrada establerta manualment: %@ unitats"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uncalibrated measurement set manually: %@ units"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medición sin calibrar establecida manualmente: %@ unidades"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesure non calibrée définie manuellement : %@ unités"
+          }
+        }
+      }
+    },
+    "Uncalibrated measurement: %.3f units" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesura no calibrada: %.3f unitats"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uncalibrated measurement: %.3f units"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medición sin calibrar: %.3f unidades"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesure non calibrée : %.3f unités"
+          }
+        }
+      }
+    },
+    "Unknown" : {
+      "comment" : "Life stage option unknown\nSex option unknown",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconegut"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconocido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inconnu"
+          }
+        }
+      }
+    },
+    "Unordered" : {
+      "comment" : "Sample ordering unordered",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sense ordre"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unordered"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin orden"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sans ordre"
           }
         }
       }
@@ -3363,21 +7782,22 @@
             "value" : "Upload"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subir"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Téléverser"
           }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Subir"
-          }
         }
       }
     },
     "Usda" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -3391,16 +7811,45 @@
             "value" : "Usda"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Usda"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Usda"
+          }
+        }
+      }
+    },
+    "USDA" : {
+      "comment" : "Toggle label for deleting USDA files",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "USDA"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "USDA"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "USDA"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "USDA"
           }
         }
       }
@@ -3420,16 +7869,45 @@
             "value" : "USDZ"
           }
         },
-        "fr" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "USDZ"
           }
         },
-        "sp" : {
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "USDZ"
+          }
+        }
+      }
+    },
+    "Use this measurement" : {
+      "comment" : "Button to apply manual measurement",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilitza aquesta mesura"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use this measurement"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar esta medida"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utiliser cette mesure"
           }
         }
       }
@@ -3449,16 +7927,16 @@
             "value" : "Value"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valor"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valeur"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Valor"
           }
         }
       }
@@ -3478,21 +7956,80 @@
             "value" : "Version 1.0.0"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión 1.0.0"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version 1.0.0"
           }
-        },
-        "sp" : {
+        }
+      }
+    },
+    "Version 1.1.0" : {
+      "comment" : "Application version in sidebar footer\nSplash screen version number",
+      "localizations" : {
+        "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Versión 1.0.0"
+            "value" : "Versió 1.1.0"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version 1.1.0"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión 1.1.0"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version 1.1.0"
+          }
+        }
+      }
+    },
+    "Viewer" : {
+      "comment" : "Sidebar entry for 3D viewer",
+      "localizations" : {
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visor"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viewer"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visor"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visionneuse"
           }
         }
       }
     },
     "Working directory" : {
+      "comment" : "Section title for working directory",
       "localizations" : {
         "ca" : {
           "stringUnit" : {
@@ -3506,16 +8043,16 @@
             "value" : "Working directory"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Directorio de trabajo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dossier de travail"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Directorio de trabajo"
           }
         }
       }
@@ -3535,16 +8072,16 @@
             "value" : "Working folder"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carpeta de trabajo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dossier de travail"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Carpeta de trabajo"
           }
         }
       }
@@ -3564,16 +8101,16 @@
             "value" : "ZIP compression"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compresión ZIP"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compression ZIP"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compresión ZIP"
           }
         }
       }
@@ -3593,49 +8130,20 @@
             "value" : "ZIP file name"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nom du fichier ZIP"
-          }
-        },
-        "sp" : {
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombre del archivo ZIP"
-          }
-        }
-      }
-    },
-    "ZIP file name:" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nom del fitxer ZIP"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ZIP file name:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nom du fichier ZIP"
-          }
-        },
-        "sp" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nombre del archivo ZIP"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version" : "1.1"
 }

@@ -1,3 +1,6 @@
+//  BoneFolderViewModel.swift
+//  ViewModel that queries UBERON, proposes bone names, and creates standardized folders.
+
 import Foundation
 import SwiftUI
 import Combine
@@ -8,8 +11,6 @@ class BoneFolderViewModel: ObservableObject {
     @Published var shouldCreatePhotosSubfolder: Bool = true
     @Published var selectedSuggestion: UBERONDocument?
     @Published var statusMessage: String = ""
-    @Published var photosFolderURL: URL?
-    
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -49,7 +50,7 @@ class BoneFolderViewModel: ObservableObject {
     func createFolder(at parentURL: URL?) {
         guard let parent = parentURL, let suggestion = selectedSuggestion else {
             DispatchQueue.main.async {
-                self.statusMessage = "Missing folder or selected bone."
+                self.statusMessage = NSLocalizedString("Missing folder or selected bone.", comment: "Error when folder or bone selection is missing")
             }
             return
         }
@@ -70,7 +71,8 @@ class BoneFolderViewModel: ObservableObject {
 
             // Affichage du message de succès
             DispatchQueue.main.async {
-                self.statusMessage = "Folder created: \(folderName)"
+                let template = NSLocalizedString("Folder created: %@", comment: "Status when folder is created")
+                self.statusMessage = String(format: template, folderName)
                 // Efface le message après 3 secondes
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.statusMessage = ""
@@ -82,7 +84,8 @@ class BoneFolderViewModel: ObservableObject {
         } catch {
             // Affichage du message d'erreur
             DispatchQueue.main.async {
-                self.statusMessage = "Error: \(error.localizedDescription)"
+                let template = NSLocalizedString("Error: %@", comment: "Template for reporting folder creation errors")
+                self.statusMessage = String(format: template, error.localizedDescription)
                 // Efface le message après 5 secondes
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     self.statusMessage = ""
@@ -90,10 +93,6 @@ class BoneFolderViewModel: ObservableObject {
             }
 
             print("Error while creating the folder : \(error.localizedDescription)")
-        }
-        DispatchQueue.main.async {
-            self.photosFolderURL = newFolder.appendingPathComponent("photos")
-            print("photosFolderURL set to:", self.photosFolderURL!.path)
         }
     }
 }

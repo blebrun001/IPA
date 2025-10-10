@@ -1,3 +1,6 @@
+//  UBERONDocument.swift
+//  Codable models representing UBERON ontology search responses.
+
 import Foundation
 
 struct UBERONResponse: Codable {

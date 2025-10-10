@@ -37,7 +37,7 @@ class DataverseClient {
         
         if process.terminationStatus != 0 {
             throw NSError(domain: "DataverseClient", code: Int(process.terminationStatus),
-                          userInfo: [NSLocalizedDescriptionKey: "Compression error"])
+                          userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Compression error", comment: "Error when ZIP compression fails")])
         }
         return zipFileURL
     }
@@ -53,11 +53,15 @@ class DataverseClient {
         let baseAddress = dataverseAddress.hasSuffix("/") ? dataverseAddress : dataverseAddress + "/"
         let transformedDOI = transformDOI(datasetDOI)
         let endpoint = "\(baseAddress)api/datasets/:persistentId/add?persistentId=\(transformedDOI)"
-        print("URL d'upload utilisée : \(endpoint)")
-        
+        print("Upload URL in use: \(endpoint)")
+
         guard let url = URL(string: endpoint) else {
-            completion(.failure(NSError(domain: "DataverseClient", code: 0,
-                                        userInfo: [NSLocalizedDescriptionKey: "Invalid Dataverse addresse."])))
+            let error = NSError(
+                domain: "DataverseClient",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Invalid Dataverse address.", comment: "Error when Dataverse URL is invalid")]
+            )
+            completion(.failure(error))
             return
         }
         
@@ -96,22 +100,34 @@ class DataverseClient {
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(NSError(domain: "DataverseClient", code: 0,
-                                            userInfo: [NSLocalizedDescriptionKey: "No answer recieved."])))
+                let error = NSError(
+                    domain: "DataverseClient",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No response received.", comment: "Error when no HTTP response is returned")]
+                )
+                completion(.failure(error))
                 return
             }
-            print("Code HTTP : \(httpResponse.statusCode)")
+            print("HTTP status code: \(httpResponse.statusCode)")
             if httpResponse.statusCode != 200 {
-                completion(.failure(NSError(domain: "DataverseClient", code: httpResponse.statusCode,
-                                            userInfo: [NSLocalizedDescriptionKey: "Erreur HTTP: \(httpResponse.statusCode)"])))
+                let error = NSError(
+                    domain: "DataverseClient",
+                    code: httpResponse.statusCode,
+                    userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("HTTP error: %d", comment: "Error when server returns non-200 code"), httpResponse.statusCode)]
+                )
+                completion(.failure(error))
                 return
             }
             guard let data = data else {
-                completion(.failure(NSError(domain: "DataverseClient", code: 0,
-                                            userInfo: [NSLocalizedDescriptionKey: "No data recieved."])))
+                let error = NSError(
+                    domain: "DataverseClient",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No data received.", comment: "Error when HTTP response has no data")]
+                )
+                completion(.failure(error))
                 return
             }
-            let responseString = String(data: data, encoding: .utf8) ?? "Invalid answer"
+            let responseString = String(data: data, encoding: .utf8) ?? NSLocalizedString("Invalid response", comment: "Fallback when response cannot be decoded")
             completion(.success(responseString))
         }
         uploadTask.resume()

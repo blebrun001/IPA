@@ -5,6 +5,8 @@
 import Foundation
 
 class LanguageManager: ObservableObject {
+    private static let supportedLanguages = ["en", "fr", "es", "ca"]
+
     // Currently selected language code (e.g., "en", "fr", etc.)
     @Published var selectedLanguage: String {
         didSet {
@@ -16,12 +18,18 @@ class LanguageManager: ObservableObject {
     
     // Initialize the manager with the current system language
     init() {
-        let current = UserDefaults.standard.stringArray(forKey: "AppleLanguages")?.first
-        self.selectedLanguage = current ?? Locale.current.language.languageCode?.identifier ?? "fr"
+        let storedLanguage = UserDefaults.standard.stringArray(forKey: "AppleLanguages")?.first
+        if let storedLanguage, LanguageManager.supportedLanguages.contains(storedLanguage) {
+            self.selectedLanguage = storedLanguage
+        } else {
+            self.selectedLanguage = "en"
+            UserDefaults.standard.set([self.selectedLanguage], forKey: "AppleLanguages")
+            UserDefaults.standard.synchronize()
+        }
     }
     
     // Returns the list of available language codes supported by the app
     func availableLanguages() -> [String] {
-        return ["fr", "en", "sp", "ca"]
+        return LanguageManager.supportedLanguages
     }
 }

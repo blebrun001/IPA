@@ -28,7 +28,7 @@ struct OBJRenameTabView: View {
 
             // New name input
             HStack {
-                Text("New name:")
+                (Text("New name") + Text(":"))
                 TextField("New name", text: $viewModel.newName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
