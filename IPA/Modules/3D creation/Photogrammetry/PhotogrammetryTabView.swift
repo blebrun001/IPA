@@ -40,7 +40,9 @@ struct PhotogrammetryTabView: View {
     @State private var shouldDeleteNormal = false
     @State private var shouldDeleteRoughness = false
 
-    
+    // Error alert state
+    @State private var showErrorAlert = false
+    @State private var errorMessage: String = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -231,6 +233,11 @@ struct PhotogrammetryTabView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
+        .alert(NSLocalizedString("Error", comment: "Generic error title"), isPresented: $showErrorAlert) {
+            Button(NSLocalizedString("OK", comment: "Dismiss error alert"), role: .cancel) { }
+        } message: {
+            Text(errorMessage)
+        }
     }
     
     // MARK: - Folder Selection Helpers
@@ -315,6 +322,14 @@ struct PhotogrammetryTabView: View {
                         let durationString = String(format: NSLocalizedString("%.2f", comment: "Two-decimal duration"), duration)
                         let template = NSLocalizedString("Processed in %@ sec. File: %@", comment: "Status after photogrammetry completes")
                         self.viewModel.statusMessage = String(format: template, durationString, fileURL.lastPathComponent)
+                    }
+                },
+                onError: { message in
+                    DispatchQueue.main.async {
+                        self.viewModel.isProcessing = false
+                        self.errorMessage = message
+                        self.viewModel.statusMessage = message
+                        self.showErrorAlert = true
                     }
                 }
             )

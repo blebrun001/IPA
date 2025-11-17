@@ -6,6 +6,7 @@ import UniformTypeIdentifiers
 
 struct ReadmeGeneratorTabView: View {
     @EnvironmentObject var viewModel: ReadmeGeneratorViewModel
+    @EnvironmentObject var settings: SettingsManager
     private let readmeGenerator = ReadmeGenerator()
     
     let sexOptions = ["female", "male", "hermaphrodite", "unknown"]
@@ -99,6 +100,13 @@ struct ReadmeGeneratorTabView: View {
                         Text(NSLocalizedString("DOI:", comment: "Label for DOI field"))
                         TextField("", text: $viewModel.doi)
                     }
+                    Button {
+                        openDataverseUpload()
+                    } label: {
+                        Label(NSLocalizedString("Open Dataverse upload", comment: "Button to open Dataverse upload module"), systemImage: "square.and.arrow.up")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     HStack {
                         Text(NSLocalizedString("Folder Size (GB):", comment: "Label for folder size field"))
                         TextField("", text: $viewModel.fileSize)
@@ -196,6 +204,14 @@ struct ReadmeGeneratorTabView: View {
         return true
     }
     
+    private func openDataverseUpload() {
+        let candidate = viewModel.doi.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !candidate.isEmpty {
+            settings.dataversePersistentId = candidate
+        }
+        NotificationCenter.default.post(name: .openDataverseUpload, object: nil)
+    }
+
     private func selectFolderAction() {
         if let selectedFolder = selectFolder() {
             viewModel.folder = selectedFolder

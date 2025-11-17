@@ -41,7 +41,8 @@ public class PhotogrammetryManager: ObservableObject {
                              compressImages: Bool,
                              compressionQuality: CGFloat,
                              onProgressUpdate: @escaping (Double) -> Void,
-                             onCompletion: @escaping (URL) -> Void) async {
+                             onCompletion: @escaping (URL) -> Void,
+                             onError: @escaping (String) -> Void) async {
         guard PhotogrammetrySession.isSupported else {
             print("Photogrammetry unsupported by this machine.")
             return
@@ -51,23 +52,36 @@ public class PhotogrammetryManager: ObservableObject {
             config.sampleOrdering = sampleOrdering
             config.featureSensitivity = featureSensitivity
             
-            let session = try PhotogrammetrySession(input: inputFolder, configuration: config)
-            self.currentSession = session
-            
+            // Pre-flight checks for existing destination
             let request: PhotogrammetrySession.Request
             var outputURL: URL
             
             if exportFormat == "OBJ" {
                 let objFolder = outputFolder.appendingPathComponent(fileName, isDirectory: true)
+                var isDir: ObjCBool = false
+                let exists = FileManager.default.fileExists(atPath: objFolder.path, isDirectory: &isDir) && isDir.boolValue
+                if exists {
+                    let msg = NSLocalizedString("The model folder already exists. Choose another name or delete the existing folder.", comment: "Error when target OBJ folder already exists")
+                    onError(msg)
+                    return
+                }
                 try FileManager.default.createDirectory(at: objFolder, withIntermediateDirectories: true)
                 request = makeModelFileRequest(url: objFolder, detail: detail, mask: maskMode)
                 outputURL = objFolder.appendingPathComponent("\(fileName).obj")
                 print("Export OBJ file to: \(objFolder.path) with mask: \(maskMode.rawValue)")
             } else {
                 outputURL = outputFolder.appendingPathComponent("\(fileName).usdz")
+                if FileManager.default.fileExists(atPath: outputURL.path) {
+                    let msg = NSLocalizedString("A USDZ file with this name already exists. Choose another name or delete the existing file.", comment: "Error when target USDZ file already exists")
+                    onError(msg)
+                    return
+                }
                 request = makeModelFileRequest(url: outputURL, detail: detail, mask: maskMode)
                 print("Export USDZ file to: \(outputURL.path) with mask: \(maskMode.rawValue)")
             }
+
+            let session = try PhotogrammetrySession(input: inputFolder, configuration: config)
+            self.currentSession = session
             
             Task {
                 do {
@@ -117,15 +131,30 @@ public class PhotogrammetryManager: ObservableObject {
                                     onCompletion(renamedOBJ)
                                 } else {
                                     print("No OBJ file found in \(objFolder.path)")
-                                    onCompletion(objFolder)
+                                    let msg = NSLocalizedString("No 3D OBJ file was created.", comment: "Error when no OBJ was generated")
+                                    onError(msg)
                                 }
                             } else {
-                                PhotogrammetryManager.shared.lastGeneratedOBJ = outputURL
-                                print("lastGeneratedOBJ updated (USDZ): \(outputURL.path)")
-                                onCompletion(outputURL)
+                                // For USDZ, ensure the file exists (allow short delay)
+                                var exists = FileManager.default.fileExists(atPath: outputURL.path)
+                                var checks = 0
+                                while !exists && checks < 10 {
+                                    try await Task.sleep(nanoseconds: 200_000_000)
+                                    exists = FileManager.default.fileExists(atPath: outputURL.path)
+                                    checks += 1
+                                }
+                                if exists {
+                                    PhotogrammetryManager.shared.lastGeneratedOBJ = outputURL
+                                    print("lastGeneratedOBJ updated (USDZ): \(outputURL.path)")
+                                    onCompletion(outputURL)
+                                } else {
+                                    let msg = NSLocalizedString("No 3D USDZ file was created.", comment: "Error when no USDZ was generated")
+                                    onError(msg)
+                                }
                             }
                         case .requestError(_, let error):
                             print("Error: \(error.localizedDescription)")
+                            onError(error.localizedDescription)
                         case .requestProgress(_, let fractionComplete):
                             DispatchQueue.main.async {
                                 onProgressUpdate(fractionComplete)
@@ -137,12 +166,14 @@ public class PhotogrammetryManager: ObservableObject {
                 } catch {
                     print("Processing error: \(error.localizedDescription)")
                     self.currentSession = nil
+                    onError(error.localizedDescription)
                 }
             }
             
             try session.process(requests: [request])
         } catch {
             print("Session initialization error: \(error.localizedDescription)")
+            onError(error.localizedDescription)
         }
     }
     

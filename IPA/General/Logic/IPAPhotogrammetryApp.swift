@@ -9,14 +9,13 @@ struct IPAPhotogrammetryApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var languageManager = LanguageManager()
-    @StateObject var settings = SettingsManager()
+    @StateObject var settings = SettingsManager.instance
     @StateObject private var measureViewModel = MeasureViewModel()
     @StateObject private var photogrammetryViewModel = PhotogrammetryViewModel()
     @StateObject private var autoScaleViewModel = AutoScaleViewModel()
     @StateObject private var objScalerViewModel = OBJScalerViewModel()
     @StateObject private var objRenamerViewModel = OBJRenamerViewModel()
     @StateObject private var readmeGeneratorViewModel = ReadmeGeneratorViewModel()
-    @StateObject private var dataverseViewModel = DataverseViewModel()
     @StateObject private var folderStructureViewModel = FolderStructureViewModel()
     @StateObject private var boneFolderViewModel = BoneFolderViewModel()
 
@@ -30,7 +29,6 @@ struct IPAPhotogrammetryApp: App {
                 .environmentObject(objScalerViewModel)
                 .environmentObject(objRenamerViewModel)
                 .environmentObject(readmeGeneratorViewModel)
-                .environmentObject(dataverseViewModel)
                 .environmentObject(folderStructureViewModel)
                 .environmentObject(boneFolderViewModel)
                 .environmentObject(settings)

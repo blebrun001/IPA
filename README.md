@@ -13,6 +13,27 @@ IPA is a macOS application developed at IPHES-CERCA by Brice Lebrun to streamlin
 - Dataset preparation helpers: README generator, Dataverse uploader, folder templating, and OBJ renaming.
 - Bone folder creation assistant backed by UBERON suggestions.
 
+## Dataverse Upload Module
+The **Dataverse upload** tab (under *Dataset preparation*) is now a native IPA module. It shares credentials with the global settings screen and requires:
+
+- A Dataverse base URL (e.g. `https://demo.dataverse.org`).
+- An API key with write access to the target dataset.
+- The dataset persistent identifier (`doi:...`) that will be prefilled automatically when coming from the README Generator.
+
+### Configuration & Options
+- **Exclude regex** filters dotfiles or any custom pattern before uploads.
+- **Direct upload** toggles the S3 presigned flow; the coordinator automatically falls back to server-side multipart uploads if the endpoint is missing (404) or the dataset exceeds the S3 limit.
+- **Retries & backoff**: set maximum attempts, initial delay, and whether to resume automatically on transient URLError/POSIX codes.
+- **Index refresh**: refresh by time or by file count to keep remote duplicate detection in sync.
+- **Checksum matching**: optionally compute MD5/SHA checksums locally when the Dataverse draft listing exposes them for reliable deduplication.
+
+### Runtime Behaviour
+- Security-scoped bookmarks are resolved for each dropped folder/file so the sandbox can read the content.
+- Duplicate detection runs both before and after each upload using the remote draft file list (path+size or path+checksum).
+- Progress shows the current file, byte-transfer text, and a console-style log with retry hints.
+- Direct uploads stream straight to the storage provider; if a file exceeds the provider limit or the server rejects the request, IPA switches to the multipart fallback automatically without losing progress.
+- Practical limits follow the Dataverse deployment configuration (typical direct-upload size caps mirror the backing object store, while server-side multipart handles very large files but is constrained by HTTP timeouts).
+
 ## Project Layout
 - `IPA/`
   - `General/` – Scene setup, global settings, shared UI.

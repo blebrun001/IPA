@@ -39,7 +39,7 @@ class BoneFolderViewModel: ObservableObject {
             do {
                 let decoded = try JSONDecoder().decode(UBERONResponse.self, from: data)
                 DispatchQueue.main.async {
-                    self.suggestions = decoded.response.docs.filter { $0.label != nil && $0.obo_id != nil }
+                    self.suggestions = decoded.response.docs.filter { !$0.label.isEmpty && !$0.obo_id.isEmpty }
                 }
             } catch {
                 print("DDecoding failed: \(error.localizedDescription)")
@@ -55,8 +55,8 @@ class BoneFolderViewModel: ObservableObject {
             return
         }
 
-        let oboID = (suggestion.obo_id ?? "").replacingOccurrences(of: ":", with: "")
-        let label = (suggestion.label ?? "").replacingOccurrences(of: " ", with: "_")
+        let oboID = suggestion.obo_id.replacingOccurrences(of: ":", with: "")
+        let label = suggestion.label.replacingOccurrences(of: " ", with: "_")
         let folderName = "\(oboID)_\(label)"
 
         let newFolder = parent.appendingPathComponent(folderName)

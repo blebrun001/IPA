@@ -4,6 +4,10 @@
 
 import SwiftUI
 
+extension Notification.Name {
+    static let openDataverseUpload = Notification.Name("IPA.OpenDataverseUpload")
+}
+
 // Enum representing each application section (tab)
 enum AppSection: String, CaseIterable, Identifiable {
     case photogrammetry
@@ -13,7 +17,7 @@ enum AppSection: String, CaseIterable, Identifiable {
     case objRenamer
     case folderStructure
     case readmeGenerator
-    case dataverse
+    case dataverseUpload
     case boneFolder
     
     var id: String { rawValue }
@@ -28,7 +32,7 @@ enum AppSection: String, CaseIterable, Identifiable {
         case .objRenamer:          return "text.badge.plus"
         case .folderStructure:     return "folder"
         case .readmeGenerator:     return "doc.text"
-        case .dataverse:           return "icloud.and.arrow.up"
+        case .dataverseUpload:     return "square.and.arrow.up"
         case .boneFolder:          return "bolt"
         }
     }
@@ -45,7 +49,7 @@ enum AppSection: String, CaseIterable, Identifiable {
             return .creation
         case .objRenamer, .folderStructure, .boneFolder:
             return .files
-        case .readmeGenerator, .dataverse:
+        case .readmeGenerator, .dataverseUpload:
             return .dataset
         }
     }
@@ -67,7 +71,7 @@ enum AppSection: String, CaseIterable, Identifiable {
             return NSLocalizedString("Folder Structure", comment: "Sidebar entry for folder structure generator")
         case .readmeGenerator:
             return NSLocalizedString("README Generator", comment: "Sidebar entry for README generator")
-        case .dataverse:
+        case .dataverseUpload:
             return NSLocalizedString("Dataverse Upload", comment: "Sidebar entry for Dataverse upload module")
         case .boneFolder:
             return NSLocalizedString("Bone Folder", comment: "Sidebar entry for bone folder utility")
@@ -165,6 +169,9 @@ struct MainView: View {
                     }
                 }
         .toolbarRole(.automatic)
+        .onReceive(NotificationCenter.default.publisher(for: .openDataverseUpload)) { _ in
+            selectedSection = .dataverseUpload
+        }
     }
     
     // Returns the view corresponding to the selected section
@@ -183,8 +190,8 @@ struct MainView: View {
             FolderStructureTabView()
         case .readmeGenerator:
             ReadmeGeneratorTabView()
-        case .dataverse:
-            DataverseTabView()
+        case .dataverseUpload:
+            DataverseUploadTabView()
         case .viewer:
             ViewerTabView()
         case .boneFolder:
@@ -202,7 +209,6 @@ struct MainView_Previews: PreviewProvider {
             .environmentObject(OBJScalerViewModel())
             .environmentObject(OBJRenamerViewModel())
             .environmentObject(ReadmeGeneratorViewModel())
-            .environmentObject(DataverseViewModel())
             .environmentObject(FolderStructureViewModel())
             .environmentObject(LanguageManager())
             .environmentObject(BoneFolderViewModel())
