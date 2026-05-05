@@ -2,7 +2,7 @@
   <img src="IPA/Assets.xcassets/AppIcon.appiconset/IPA512.png" alt="IPA Logo" width="140" />
 </p>
 
-# IPA - Integrated Photogrammetry Assistant
+# Integrated Photogrammetry Assistant
 
 IPA is a macOS application developed at IPHES-CERCA by Brice Lebrun to streamline the production, scaling, organisation, and publication of osteological 3D datasets. The toolkit brings together photogrammetry automation, OBJ post-processing utilities, dataset preparation helpers, and Dataverse publishing tools inside a single interface.
 
