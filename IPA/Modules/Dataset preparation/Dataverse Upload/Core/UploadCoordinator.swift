@@ -2,7 +2,6 @@
 //  remote index to avoid duplicates, and drives retries across direct and
 //  multipart strategies while reporting progress to the UI.
 import Foundation
-import UniformTypeIdentifiers
 
 /// Orchestrates uploads against the Dataverse API with duplicate detection and retry policies.
 final class UploadCoordinator {
@@ -21,371 +20,307 @@ final class UploadCoordinator {
                      progress: @escaping (String) -> Void,
                      byteProgress: @escaping (String) -> Void) async throws {
         let filter = RegexFilter(pattern: settings.excludeRegex)
-        let maxAttemptsSetting = settings.maxRetryAttempts
-        let baseBackoff = Double(settings.initialBackoffSeconds)
-        let resume = settings.resumeOnFailure
-        let useDirectUpload = settings.useDirectUpload
-        let refreshInterval: TimeInterval = TimeInterval(settings.indexRefreshIntervalSeconds)
-        let refreshEveryFiles = max(1, settings.indexRefreshEveryNFiles)
+        let policy = UploadRetryPolicy(
+            maxAttempts: settings.resumeOnFailure ? settings.maxRetryAttempts : 1,
+            baseBackoff: Double(settings.initialBackoffSeconds)
+        )
         let persistentId = settings.persistentId
-
         let allURLs = try SecurityScopedAccess.resolveURLs(for: items)
+        defer { SecurityScopedAccess.stopAccess(to: allURLs) }
 
-        // Build an index of existing draft files (case-insensitive) to aggressively skip duplicates.
         let existingFiles = try await client.listDraftFiles(persistentId: persistentId)
-        var existingByPathAndSize = Set<String>()
-        var existingByPathAndChecksum = Set<String>()
-        var checksumTypesPresent = Set<String>()
-        for e in existingFiles {
-            let name = e.filename.lowercased()
-            let dir = (e.directoryLabel ?? "").trimmingCharacters(in: CharacterSet(charactersIn: "/")).lowercased()
-            let pathKey = dir.isEmpty ? name : "\(dir)/\(name)"
-            if let sz = e.filesize { existingByPathAndSize.insert("\(pathKey)|\(sz)") }
-            if let ck = e.checksum, !ck.isEmpty { existingByPathAndChecksum.insert("\(pathKey)|\(ck.lowercased())") }
-            if let t = e.checksumType?.lowercased(), !t.isEmpty { checksumTypesPresent.insert(t) }
-        }
+        let duplicateIndex = DataverseDuplicateIndex(files: existingFiles)
+        let refreshPolicy = DataverseIndexRefreshPolicy(
+            interval: TimeInterval(settings.indexRefreshIntervalSeconds),
+            everyFiles: max(1, settings.indexRefreshEveryNFiles)
+        )
 
-        // Periodic index refresh to reflect new files uploaded from this or another client.
-        var lastIndexRefresh = Date()
-        var processedSinceRefresh = 0
-
-        enum DuplicateMatch { case none, pathAndSize, pathAndChecksum }
-        // Lookup helper that checks if a path is already present based on size or checksum.
-        @inline(__always) func matchInIndex(pathKey: String, size: Int64, checksum: String?) -> DuplicateMatch {
-            let key = pathKey.lowercased()
-            if existingByPathAndSize.contains("\(key)|\(size)") { return .pathAndSize }
-            if let c = checksum?.lowercased(), existingByPathAndChecksum.contains("\(key)|\(c)") { return .pathAndChecksum }
-            return .none
-        }
-
-        // Refresh the cached server index if enough time or files have elapsed.
-        func refreshIndexIfNeeded(force: Bool = false) async {
-            let shouldRefresh = force || Date().timeIntervalSince(lastIndexRefresh) > refreshInterval || processedSinceRefresh >= refreshEveryFiles
-            guard shouldRefresh else { return }
-            do {
-                let refreshed = try await client.listDraftFiles(persistentId: persistentId)
-                existingByPathAndSize.removeAll(keepingCapacity: true)
-                existingByPathAndChecksum.removeAll(keepingCapacity: true)
-                for e in refreshed {
-                    let name = e.filename.lowercased()
-                    let dir = (e.directoryLabel ?? "").trimmingCharacters(in: CharacterSet(charactersIn: "/")).lowercased()
-                    let pathKey = dir.isEmpty ? name : "\(dir)/\(name)"
-                    if let sz = e.filesize { existingByPathAndSize.insert("\(pathKey)|\(sz)") }
-                    if let ck = e.checksum, !ck.isEmpty { existingByPathAndChecksum.insert("\(pathKey)|\(ck.lowercased())") }
-                }
-                lastIndexRefresh = Date()
-                processedSinceRefresh = 0
-            } catch {
-                log("⚠️ Failed to refresh remote index: \(error.localizedDescription)")
-                lastIndexRefresh = Date()
-                processedSinceRefresh = 0
-            }
-        }
-
-        // Normalize the source URLs and deduplicate by path.
-        let flat = FileSystem.flattenFiles(from: allURLs)
-        let uniquePaths = Array(Set(flat.map { ($0.path as NSString).standardizingPath.lowercased() })).sorted()
-        let files = uniquePaths.map { URL(fileURLWithPath: $0) }
-
-        let total = files.count
-        var index = 0
+        let files = Self.uniqueFiles(from: allURLs)
+        var progressIndex = 0
 
         for file in files {
-            defer { processedSinceRefresh += 1 }
-            if !filter.accepts(file) { log("Ignored by regex: \(file.path)"); continue }
-
-            let filenameOnly = file.lastPathComponent
-            let attrs = try FileManager.default.attributesOfItem(atPath: file.path)
-            let size = (attrs[.size] as? NSNumber)?.int64Value ?? 0
-            var checksum: String? = nil
-
-            // Compute the Dataverse-friendly relative path once for reuse.
-            let rel = FileSystem.relativePath(baseCandidates: allURLs, file: file)
-            let dirLabel = rel.directoryLabel
-            let fileName = rel.fileName
-            let pathKeyLocal: String
-            if let dir = rel.directoryLabel?.lowercased(), !dir.isEmpty {
-                pathKeyLocal = "\(dir)/\(filenameOnly.lowercased())"
-            } else {
-                pathKeyLocal = filenameOnly.lowercased()
-            }
-
-            // Optionally compute the checksum so we can skip duplicates by hash as well as size.
-            if settings.useChecksumForDuplicates && !existingByPathAndChecksum.isEmpty && !checksumTypesPresent.isEmpty {
-                checksum = await computeLocalChecksum(for: file, types: checksumTypesPresent, log: log)
-            }
-
-            index += 1
-            progress("File \(index)/\(total)")
-
-            let mime = MimeType.infer(url: file)
-
-            if !useDirectUpload {
-                // Force the legacy multipart path (no direct upload attempt).
-                var attempt = 0
-                let maxAttempts = resume ? maxAttemptsSetting : 1
-                while attempt < maxAttempts {
-                    await refreshIndexIfNeeded()
-                    let dup = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                    if dup != .none {
-                        let r = (dup == .pathAndSize ? "path+size" : "path+checksum")
-                        log("✓ Already present before upload (\(r)), skipping: \(rel.fullPath)")
-                        break
-                    }
-                    do {
-                        log("== Multipart upload == \(file.lastPathComponent)")
-                        log("Uploading via server: \(file.lastPathComponent) (\(size) bytes)")
-                        try await client.uploadMultipart(persistentId: persistentId,
-                                                         fileURL: file,
-                                                         directoryLabel: dirLabel,
-                                                         log: log,
-                                                         progress: byteProgress,
-                                                         shouldCancel: { Task.isCancelled })
-                        log("✓ Completed (multipart): \(rel.fullPath)")
-                        existingByPathAndSize.insert("\(pathKeyLocal)|\(size)")
-                        break
-                    } catch {
-                        if let urlError = error as? URLError {
-                            if UploadCoordinator.isTransient(urlError) && attempt < maxAttempts - 1 {
-                                attempt += 1
-                                log("Transient network error: code=\(urlError.code.rawValue), retry \(attempt)/\(maxAttempts)…")
-                                await refreshIndexIfNeeded()
-                                let dupA = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                                if dupA != .none {
-                                    let r = (dupA == .pathAndSize ? "path+size" : "path+checksum")
-                                    log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                                    break
-                                }
-                                await UploadCoordinator.backoffSleep(attempt: attempt, base: baseBackoff)
-                                log("Resuming multipart upload, attempt \(attempt)/\(maxAttempts)…")
-                                continue
-                            } else {
-                                log("Network error: code=\(urlError.code.rawValue)")
-                                throw urlError
-                            }
-                        }
-                        if let posixError = error as? POSIXError {
-                            if UploadCoordinator.isTransient(posixError) && attempt < maxAttempts - 1 {
-                                attempt += 1
-                                log("Transient POSIX error: code=\(posixError.code.rawValue), retry \(attempt)/\(maxAttempts)…")
-                                await refreshIndexIfNeeded()
-                                let dupB = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                                if dupB != .none {
-                                    let r = (dupB == .pathAndSize ? "path+size" : "path+checksum")
-                                    log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                                    break
-                                }
-                                await UploadCoordinator.backoffSleep(attempt: attempt)
-                                log("Resuming multipart upload, attempt \(attempt)/\(maxAttempts)…")
-                                continue
-                            } else {
-                                log("POSIX network error: code=\(posixError.code.rawValue)")
-                                throw posixError
-                            }
-                        }
-                        attempt += 1
-                        await refreshIndexIfNeeded()
-                        let dupC = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                        if dupC != .none {
-                            let r = (dupC == .pathAndSize ? "path+size" : "path+checksum")
-                            log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                            break
-                        }
-                        if attempt >= maxAttempts || !UploadCoordinator.isTransient(error) {
-                            throw error
-                        }
-                        log("Network error, retry \(attempt)/\(maxAttempts)…")
-                        await UploadCoordinator.backoffSleep(attempt: attempt, base: baseBackoff)
-                    }
-                }
+            defer { refreshPolicy.recordProcessedFile() }
+            if !filter.accepts(file) {
+                log("Ignored by regex: \(file.path)")
                 continue
             }
 
-            // Try direct upload first, then fall back to multipart on a 404.
-            do {
-                var attempt = 0
-                let maxAttempts = resume ? maxAttemptsSetting : 1
-                while attempt < maxAttempts {
-                    await refreshIndexIfNeeded()
-                    let dup0 = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                    if dup0 != .none {
-                        let r = (dup0 == .pathAndSize ? "path+size" : "path+checksum")
-                        log("✓ Already present before upload (\(r)), skipping: \(rel.fullPath)")
-                        break
-                    }
-                    do {
-                        log("Init direct upload: \(file.lastPathComponent) (\(size) bytes)")
-                        let initResp = try await client.requestDirectUploadInit(
-                            persistentId: persistentId,
-                            fileSize: size,
-                            fileName: fileName,
-                            mime: mime
-                        )
+            var uploadFile = try await makeUploadFile(file,
+                                                      baseCandidates: allURLs,
+                                                      duplicateIndex: duplicateIndex,
+                                                      log: log)
+            progressIndex += 1
+            progress("File \(progressIndex)/\(files.count)")
 
-                        guard let urlStr = initResp.data.url,
-                              let putURL = URL(string: urlStr) else {
-                            throw DVError.initDidNotReturnURL
-                        }
-
-                        log("PUT S3 → \(putURL.host ?? "")")
-
-                        try await client.putFileToS3(preSignedURL: putURL,
-                                                     headers: initResp.data.headers,
-                                                     fileURL: file)
-                        let payload = DVFinalizeRequest(
-                            storageIdentifier: initResp.data.storageIdentifier,
-                            fileName: fileName,
-                            mimeType: mime,
-                            directoryLabel: dirLabel,
-                            description: nil
-                        )
-                        log("Finalizing Dataverse…")
-                        try await client.finalizeDirectUpload(persistentId: persistentId, payload: payload)
-
-                        log("✓ Completed (direct): \(rel.fullPath)")
-                        existingByPathAndSize.insert("\(pathKeyLocal)|\(size)")
-                        break
-                    } catch let e as DVError {
-                        if case .badStatusCode(404) = e {
-                            log("Direct upload unavailable (404) → switching to multipart fallback…")
-                            var mpAttempt = 0
-                            while mpAttempt < maxAttempts {
-                                await refreshIndexIfNeeded()
-                                let dup = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                                if dup != .none {
-                                    let r = (dup == .pathAndSize ? "path+size" : "path+checksum")
-                                    log("✓ Already present before upload (multipart fallback, \(r)), skipping: \(rel.fullPath)")
-                                    break
-                                }
-                                do {
-                                    log("== Multipart upload == \(file.lastPathComponent)")
-                                    try await client.uploadMultipart(persistentId: persistentId,
-                                                                     fileURL: file,
-                                                                     directoryLabel: dirLabel,
-                                                                     log: log,
-                                                                     progress: byteProgress,
-                                                                     shouldCancel: { Task.isCancelled })
-                                    log("✓ Completed (multipart): \(rel.fullPath)")
-                                    existingByPathAndSize.insert("\(pathKeyLocal)|\(size)")
-                                    break
-                                } catch {
-                                    if let urlError = error as? URLError {
-                                        if UploadCoordinator.isTransient(urlError) && mpAttempt < maxAttempts - 1 {
-                                            mpAttempt += 1
-                                            log("Transient network error: code=\(urlError.code.rawValue), multipart fallback retry \(mpAttempt)/\(maxAttempts)…")
-                                            await refreshIndexIfNeeded()
-                                            let dup = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                                            if dup != .none {
-                                                let r = (dup == .pathAndSize ? "path+size" : "path+checksum")
-                                                log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                                                break
-                                            }
-                                            await UploadCoordinator.backoffSleep(attempt: mpAttempt, base: baseBackoff)
-                                            log("Resuming multipart fallback, attempt \(mpAttempt)/\(maxAttempts)…")
-                                            continue
-                                        } else {
-                                            log("Network error: code=\(urlError.code.rawValue)")
-                                            throw urlError
-                                        }
-                                    }
-                                    if let posixError = error as? POSIXError {
-                                        if UploadCoordinator.isTransient(posixError) && mpAttempt < maxAttempts - 1 {
-                                            mpAttempt += 1
-                                            log("Transient POSIX error: code=\(posixError.code.rawValue), multipart fallback retry \(mpAttempt)/\(maxAttempts)…")
-                                            await refreshIndexIfNeeded()
-                                            let dup = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                                            if dup != .none {
-                                                let r = (dup == .pathAndSize ? "path+size" : "path+checksum")
-                                                log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                                                break
-                                            }
-                                            await UploadCoordinator.backoffSleep(attempt: mpAttempt)
-                                            log("Resuming multipart fallback, attempt \(mpAttempt)/\(maxAttempts)…")
-                                            continue
-                                        } else {
-                                            log("POSIX network error: code=\(posixError.code.rawValue)")
-                                            throw posixError
-                                        }
-                                    }
-                                    mpAttempt += 1
-                                    await refreshIndexIfNeeded()
-                                    let dup = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                                    if dup != .none {
-                                        let r = (dup == .pathAndSize ? "path+size" : "path+checksum")
-                                        log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                                        break
-                                    }
-                                    if mpAttempt >= maxAttempts || !UploadCoordinator.isTransient(error) {
-                                        throw error
-                                    }
-                                    log("Network error, retry \(mpAttempt)/\(maxAttempts)…")
-                                    await UploadCoordinator.backoffSleep(attempt: mpAttempt, base: baseBackoff)
-                                }
-                            }
-                            break
-                        } else {
-                            throw e
-                        }
-                    } catch {
-                        if let urlError = error as? URLError {
-                            if UploadCoordinator.isTransient(urlError) && attempt < maxAttempts - 1 {
-                                attempt += 1
-                                log("Transient network error: code=\(urlError.code.rawValue), retry \(attempt)/\(maxAttempts)…")
-                                await refreshIndexIfNeeded()
-                                let dupF = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                                if dupF != .none {
-                                    let r = (dupF == .pathAndSize ? "path+size" : "path+checksum")
-                                    log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                                    break
-                                }
-                                await UploadCoordinator.backoffSleep(attempt: attempt, base: baseBackoff)
-                                log("Resuming direct upload, attempt \(attempt)/\(maxAttempts)…")
-                                continue
-                            } else {
-                                log("Network error: code=\(urlError.code.rawValue)")
-                                throw urlError
-                            }
-                        }
-                        if let posixError = error as? POSIXError {
-                            if UploadCoordinator.isTransient(posixError) && attempt < maxAttempts - 1 {
-                                attempt += 1
-                                log("Transient POSIX error: code=\(posixError.code.rawValue), retry \(attempt)/\(maxAttempts)…")
-                                await refreshIndexIfNeeded()
-                                let dupG = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                                if dupG != .none {
-                                    let r = (dupG == .pathAndSize ? "path+size" : "path+checksum")
-                                    log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                                    break
-                                }
-                                await UploadCoordinator.backoffSleep(attempt: attempt, base: baseBackoff)
-                                log("Resuming direct upload, attempt \(attempt)/\(maxAttempts)…")
-                                continue
-                            } else {
-                                log("POSIX network error: code=\(posixError.code.rawValue)")
-                                throw posixError
-                            }
-                        }
-                        attempt += 1
-                        await refreshIndexIfNeeded()
-                        let dup = matchInIndex(pathKey: pathKeyLocal, size: size, checksum: checksum)
-                        if dup != .none {
-                            let r = (dup == .pathAndSize ? "path+size" : "path+checksum")
-                            log("✓ Already present after network error (\(r)), skipping: \(rel.fullPath)")
-                            break
-                        }
-                        if attempt >= maxAttempts || !UploadCoordinator.isTransient(error) {
-                            throw error
-                        }
-                        log("Network error, retry \(attempt)/\(maxAttempts)…")
-                        await UploadCoordinator.backoffSleep(attempt: attempt, base: baseBackoff)
-                    }
-                }
-            } catch {
-                throw error
+            if settings.useDirectUpload {
+                try await uploadDirectWithRetry(uploadFile,
+                                                persistentId: persistentId,
+                                                duplicateIndex: duplicateIndex,
+                                                refreshPolicy: refreshPolicy,
+                                                retryPolicy: policy,
+                                                log: log,
+                                                byteProgress: byteProgress)
+            } else {
+                try await uploadMultipartWithRetry(&uploadFile,
+                                                   persistentId: persistentId,
+                                                   duplicateIndex: duplicateIndex,
+                                                   refreshPolicy: refreshPolicy,
+                                                   retryPolicy: policy,
+                                                   log: log,
+                                                   byteProgress: byteProgress,
+                                                   mode: .multipartOnly)
             }
         }
+    }
 
-        SecurityScopedAccess.stopAccess(to: allURLs)
+    private static func uniqueFiles(from urls: [URL]) -> [URL] {
+        let flat = FileSystem.flattenFiles(from: urls)
+        let uniquePaths = Array(Set(flat.map { ($0.path as NSString).standardizingPath.lowercased() })).sorted()
+        return uniquePaths.map { URL(fileURLWithPath: $0) }
+    }
+
+    private func makeUploadFile(_ file: URL,
+                                baseCandidates: [URL],
+                                duplicateIndex: DataverseDuplicateIndex,
+                                log: @escaping (String) -> Void) async throws -> DataverseUploadFile {
+        let attrs = try FileManager.default.attributesOfItem(atPath: file.path)
+        let size = (attrs[.size] as? NSNumber)?.int64Value ?? 0
+        let rel = FileSystem.relativePath(baseCandidates: baseCandidates, file: file)
+        let pathKey = DataverseDuplicateIndex.pathKey(directoryLabel: rel.directoryLabel,
+                                                      filename: file.lastPathComponent)
+        var checksum: String? = nil
+
+        if settings.useChecksumForDuplicates && duplicateIndex.canMatchChecksums {
+            checksum = await computeLocalChecksum(for: file, types: duplicateIndex.checksumTypesPresent, log: log)
+        }
+
+        return DataverseUploadFile(
+            url: file,
+            size: size,
+            relativePath: rel,
+            pathKey: pathKey,
+            checksum: checksum,
+            mime: MimeType.infer(url: file)
+        )
+    }
+
+    private func uploadDirectWithRetry(_ file: DataverseUploadFile,
+                                       persistentId: String,
+                                       duplicateIndex: DataverseDuplicateIndex,
+                                       refreshPolicy: DataverseIndexRefreshPolicy,
+                                       retryPolicy: UploadRetryPolicy,
+                                       log: @escaping (String) -> Void,
+                                       byteProgress: @escaping (String) -> Void) async throws {
+        var attempt = 0
+
+        while attempt < retryPolicy.maxAttempts {
+            try await refreshIndexIfNeeded(duplicateIndex, refreshPolicy: refreshPolicy, persistentId: persistentId, log: log)
+            if logDuplicateIfPresent(file, duplicateIndex: duplicateIndex, log: log, context: "before upload") {
+                return
+            }
+
+            do {
+                try await uploadDirect(file, persistentId: persistentId, log: log)
+                duplicateIndex.markUploaded(pathKey: file.pathKey, size: file.size)
+                return
+            } catch let e as DVError {
+                if case .badStatusCode(404) = e {
+                    log("Direct upload unavailable (404) → switching to multipart fallback…")
+                    var fallback = file
+                    try await uploadMultipartWithRetry(&fallback,
+                                                       persistentId: persistentId,
+                                                       duplicateIndex: duplicateIndex,
+                                                       refreshPolicy: refreshPolicy,
+                                                       retryPolicy: retryPolicy,
+                                                       log: log,
+                                                       byteProgress: byteProgress,
+                                                       mode: .fallback)
+                    return
+                }
+                throw e
+            } catch {
+                let action = try await handleUploadFailure(error,
+                                                           attempt: &attempt,
+                                                           retryPolicy: retryPolicy,
+                                                           duplicateIndex: duplicateIndex,
+                                                           refreshPolicy: refreshPolicy,
+                                                           persistentId: persistentId,
+                                                           file: file,
+                                                           log: log,
+                                                           retryMessage: "retry",
+                                                           resumeMessage: "Resuming direct upload")
+                if action == .retry {
+                    continue
+                }
+                return
+            }
+        }
+    }
+
+    private func uploadDirect(_ file: DataverseUploadFile,
+                              persistentId: String,
+                              log: @escaping (String) -> Void) async throws {
+        log("Init direct upload: \(file.url.lastPathComponent) (\(file.size) bytes)")
+        let initResp = try await client.requestDirectUploadInit(
+            persistentId: persistentId,
+            fileSize: file.size,
+            fileName: file.relativePath.fileName,
+            mime: file.mime
+        )
+
+        guard let urlStr = initResp.data.url,
+              let putURL = URL(string: urlStr) else {
+            throw DVError.initDidNotReturnURL
+        }
+
+        log("PUT S3 → \(putURL.host ?? "")")
+
+        try await client.putFileToS3(preSignedURL: putURL,
+                                     headers: initResp.data.headers,
+                                     fileURL: file.url)
+        let payload = DVFinalizeRequest(
+            storageIdentifier: initResp.data.storageIdentifier,
+            fileName: file.relativePath.fileName,
+            mimeType: file.mime,
+            directoryLabel: file.relativePath.directoryLabel,
+            description: nil
+        )
+        log("Finalizing Dataverse…")
+        try await client.finalizeDirectUpload(persistentId: persistentId, payload: payload)
+
+        log("✓ Completed (direct): \(file.relativePath.fullPath)")
+    }
+
+    private enum MultipartMode {
+        case multipartOnly
+        case fallback
+    }
+
+    private func uploadMultipartWithRetry(_ file: inout DataverseUploadFile,
+                                          persistentId: String,
+                                          duplicateIndex: DataverseDuplicateIndex,
+                                          refreshPolicy: DataverseIndexRefreshPolicy,
+                                          retryPolicy: UploadRetryPolicy,
+                                          log: @escaping (String) -> Void,
+                                          byteProgress: @escaping (String) -> Void,
+                                          mode: MultipartMode) async throws {
+        var attempt = 0
+
+        while attempt < retryPolicy.maxAttempts {
+            try await refreshIndexIfNeeded(duplicateIndex, refreshPolicy: refreshPolicy, persistentId: persistentId, log: log)
+            let context = mode == .fallback ? "before upload (multipart fallback)" : "before upload"
+            if logDuplicateIfPresent(file, duplicateIndex: duplicateIndex, log: log, context: context) {
+                return
+            }
+
+            do {
+                log("== Multipart upload == \(file.url.lastPathComponent)")
+                if mode == .multipartOnly {
+                    log("Uploading via server: \(file.url.lastPathComponent) (\(file.size) bytes)")
+                }
+                try await client.uploadMultipart(persistentId: persistentId,
+                                                 fileURL: file.url,
+                                                 directoryLabel: file.relativePath.directoryLabel,
+                                                 log: log,
+                                                 progress: byteProgress,
+                                                 shouldCancel: { Task.isCancelled })
+                log("✓ Completed (multipart): \(file.relativePath.fullPath)")
+                duplicateIndex.markUploaded(pathKey: file.pathKey, size: file.size)
+                return
+            } catch {
+                let retryMessage = mode == .fallback ? "multipart fallback retry" : "retry"
+                let resumeMessage = mode == .fallback ? "Resuming multipart fallback" : "Resuming multipart upload"
+                let action = try await handleUploadFailure(error,
+                                                           attempt: &attempt,
+                                                           retryPolicy: retryPolicy,
+                                                           duplicateIndex: duplicateIndex,
+                                                           refreshPolicy: refreshPolicy,
+                                                           persistentId: persistentId,
+                                                           file: file,
+                                                           log: log,
+                                                           retryMessage: retryMessage,
+                                                           resumeMessage: resumeMessage)
+                if action == .retry {
+                    continue
+                }
+                return
+            }
+        }
+    }
+
+    private enum FailureAction {
+        case retry
+        case finished
+    }
+
+    private func handleUploadFailure(_ error: Error,
+                                     attempt: inout Int,
+                                     retryPolicy: UploadRetryPolicy,
+                                     duplicateIndex: DataverseDuplicateIndex,
+                                     refreshPolicy: DataverseIndexRefreshPolicy,
+                                     persistentId: String,
+                                     file: DataverseUploadFile,
+                                     log: @escaping (String) -> Void,
+                                     retryMessage: String,
+                                     resumeMessage: String) async throws -> FailureAction {
+        if let urlError = error as? URLError {
+            guard retryPolicy.shouldRetry(urlError, attempt: attempt) else {
+                log("Network error: code=\(urlError.code.rawValue)")
+                throw urlError
+            }
+            attempt += 1
+            log("Transient network error: code=\(urlError.code.rawValue), \(retryMessage) \(attempt)/\(retryPolicy.maxAttempts)…")
+        } else if let posixError = error as? POSIXError {
+            guard retryPolicy.shouldRetry(posixError, attempt: attempt) else {
+                log("POSIX network error: code=\(posixError.code.rawValue)")
+                throw posixError
+            }
+            attempt += 1
+            log("Transient POSIX error: code=\(posixError.code.rawValue), \(retryMessage) \(attempt)/\(retryPolicy.maxAttempts)…")
+        } else {
+            attempt += 1
+            if attempt >= retryPolicy.maxAttempts || !UploadRetryPolicy.isTransient(error) {
+                throw error
+            }
+            log("Network error, retry \(attempt)/\(retryPolicy.maxAttempts)…")
+        }
+
+        try await refreshIndexIfNeeded(duplicateIndex, refreshPolicy: refreshPolicy, persistentId: persistentId, log: log, force: true)
+        if logDuplicateIfPresent(file, duplicateIndex: duplicateIndex, log: log, context: "after network error") {
+            return .finished
+        }
+
+        await retryPolicy.sleep(attempt: attempt)
+        log("\(resumeMessage), attempt \(attempt)/\(retryPolicy.maxAttempts)…")
+        return .retry
+    }
+
+    private func refreshIndexIfNeeded(_ duplicateIndex: DataverseDuplicateIndex,
+                                      refreshPolicy: DataverseIndexRefreshPolicy,
+                                      persistentId: String,
+                                      log: @escaping (String) -> Void,
+                                      force: Bool = false) async throws {
+        guard refreshPolicy.shouldRefresh(force: force) else { return }
+        do {
+            let refreshed = try await client.listDraftFiles(persistentId: persistentId)
+            duplicateIndex.replace(with: refreshed)
+            refreshPolicy.recordRefresh()
+        } catch {
+            log("⚠️ Failed to refresh remote index: \(error.localizedDescription)")
+            refreshPolicy.recordRefresh()
+        }
+    }
+
+    private func logDuplicateIfPresent(_ file: DataverseUploadFile,
+                                       duplicateIndex: DataverseDuplicateIndex,
+                                       log: @escaping (String) -> Void,
+                                       context: String) -> Bool {
+        let match = duplicateIndex.match(pathKey: file.pathKey, size: file.size, checksum: file.checksum)
+        guard match != .none else { return false }
+
+        let reason = match == .pathAndSize ? "path+size" : "path+checksum"
+        log("✓ Already present \(context) (\(reason)), skipping: \(file.relativePath.fullPath)")
+        return true
     }
 
     /// Compute a checksum using whichever algorithms the server already exposes.
@@ -404,42 +339,13 @@ final class UploadCoordinator {
         }
         return nil
     }
+}
 
-    /// Returns `true` when the error is likely transient and worth retrying.
-    private static func isTransient(_ error: Error) -> Bool {
-        if let urlError = error as? URLError {
-            switch urlError.code {
-            case .timedOut,
-                 .cannotFindHost,
-                 .cannotConnectToHost,
-                 .networkConnectionLost,
-                 .dnsLookupFailed,
-                 .notConnectedToInternet,
-                 .internationalRoamingOff,
-                 .callIsActive,
-                 .dataNotAllowed,
-                 .requestBodyStreamExhausted,
-                 .cannotLoadFromNetwork,
-                 .resourceUnavailable:
-                return true
-            default:
-                return false
-            }
-        }
-        if let posixError = error as? POSIXError {
-            switch posixError.code {
-            case .ECONNRESET, .ENETDOWN, .EPIPE, .ETIMEDOUT:
-                return true
-            default:
-                return false
-            }
-        }
-        return false
-    }
-
-    /// Sleep using exponential backoff where the first attempt waits `base` seconds.
-    private static func backoffSleep(attempt: Int, base: Double = 1.0, factor: Double = 2.0) async {
-        let delay = base * pow(factor, Double(attempt - 1))
-        try? await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
-    }
+private struct DataverseUploadFile {
+    let url: URL
+    let size: Int64
+    let relativePath: (directoryLabel: String?, fileName: String, fullPath: String)
+    let pathKey: String
+    let checksum: String?
+    let mime: String?
 }

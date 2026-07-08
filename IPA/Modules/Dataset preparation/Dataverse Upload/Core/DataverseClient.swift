@@ -225,27 +225,19 @@ struct DataverseClient: DVClient {
         req.setValue("100-continue", forHTTPHeaderField: "Expect")
         req.setValue("close", forHTTPHeaderField: "Connection")
 
-        // HEAD
-        var head = Data()
-        func append(_ s: String) { head.append(Data(s.utf8)) }
-        if let dir = directoryLabel, !dir.isEmpty {
-            append("--\(boundary)\r\n")
-            append("Content-Disposition: form-data; name=\"directoryLabel\"\r\n\r\n")
-            append("\(dir)\r\n")
-        }
-        append("--\(boundary)\r\n")
-        append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileURL.lastPathComponent)\"\r\n")
-        append("Content-Type: application/octet-stream\r\n\r\n")
-
-        // TAIL
-        let tail = "\r\n--\(boundary)--\r\n".data(using: .utf8)!
-
         let fileSz = try fileSize(at: fileURL)
-        let contentLength = Int64(head.count) + fileSz + Int64(tail.count)
+        let parts = MultipartBodyStream.parts(boundary: boundary,
+                                               fileName: fileURL.lastPathComponent,
+                                               directoryLabel: directoryLabel)
+        let contentLength = Int64(parts.head.count) + fileSz + Int64(parts.tail.count)
         req.setValue(String(contentLength), forHTTPHeaderField: "Content-Length")
 
-        // Stream the HTTP body so we do not load the file into memory.
-        let body = try makeBoundBodyStream(head: head, fileURL: fileURL, tail: tail, log: log, progress: progress, shouldCancel: shouldCancel)
+        let body = try MultipartBodyStream.make(head: parts.head,
+                                                fileURL: fileURL,
+                                                tail: parts.tail,
+                                                log: log,
+                                                progress: progress,
+                                                shouldCancel: shouldCancel)
         req.httpBodyStream = body.input
 
         let cfg = URLSessionConfiguration.default
@@ -277,127 +269,8 @@ struct DataverseClient: DVClient {
 
 // MARK: - Local helpers
 
-/// Sendable wrapper around `OutputStream` to satisfy Swift concurrency checks.
-final class OutputStreamBox: @unchecked Sendable {
-    let stream: OutputStream
-    init(_ stream: OutputStream) { self.stream = stream }
-}
-
 /// Retrieve the file size in bytes.
 private func fileSize(at url: URL) throws -> Int64 {
     let attr = try FileManager.default.attributesOfItem(atPath: url.path)
     return (attr[.size] as? NSNumber)?.int64Value ?? 0
-}
-
-/// Create a pair of bound streams and feed `head` + file contents + `tail` into the output stream while URLSession reads from the input.
-private func makeBoundBodyStream(head: Data, fileURL: URL, tail: Data,
-                                 log: @escaping (String) -> Void,
-                                 progress: @escaping (String) -> Void,
-                                 shouldCancel: @escaping () -> Bool)
-throws -> (input: InputStream, output: OutputStream) {
-    var readStream: Unmanaged<CFReadStream>?
-    var writeStream: Unmanaged<CFWriteStream>?
-    // Allocate a 1 MiB internal buffer for the bound streams.
-    CFStreamCreateBoundPair(nil, &readStream, &writeStream, 1 << 20)
-
-    guard let rs = readStream?.takeRetainedValue(),
-          let ws = writeStream?.takeRetainedValue() else {
-        throw DVError.serverError("CFStreamCreateBoundPair failed")
-    }
-
-    let input = rs as InputStream
-    let output = ws as OutputStream
-
-    var totalBytesUploaded = 0
-    var lastLoggedMB = 0
-
-    func writeAll(_ data: Data, out box: OutputStreamBox) -> Bool {
-        let o = box.stream
-        var writtenLocal = 0
-
-        return data.withUnsafeBytes { raw -> Bool in
-            guard let base = raw.bindMemory(to: UInt8.self).baseAddress else { return false }
-            while writtenLocal < data.count {
-                if shouldCancel() {
-                    return false
-                }
-                if !o.hasSpaceAvailable {
-                    Thread.sleep(forTimeInterval: 0.005)
-                    continue
-                }
-                let n = o.write(base.advanced(by: writtenLocal), maxLength: data.count - writtenLocal)
-                if n <= 0 {
-                    DispatchQueue.main.async {
-                        log("Network connection interrupted while writing")
-                    }
-                    return false
-                }
-                writtenLocal += n
-                totalBytesUploaded += n
-
-                let totalMB = totalBytesUploaded / (1024 * 1024)
-                if totalMB > lastLoggedMB {
-                    lastLoggedMB = totalMB
-                    DispatchQueue.main.async {
-                        progress("→ \(totalMB) MB uploaded")
-                    }
-                }
-            }
-            return true
-        }
-    }
-
-    let outBox = OutputStreamBox(output)
-
-    // Asynchronously stream head + file + tail to the output stream.
-    DispatchQueue.global(qos: .utility).async {
-        let o = outBox.stream
-        o.open()
-        defer { o.close() }
-
-        guard writeAll(head, out: outBox) else {
-            o.close()
-            DispatchQueue.main.async {
-                log("Output stream interrupted, aborting upload")
-            }
-            return
-        }
-
-        do {
-            let fh = try FileHandle(forReadingFrom: fileURL)
-            defer { try? fh.close() }
-            var shouldContinue = true
-            while shouldContinue && autoreleasepool(invoking: {
-                let chunk = try? fh.read(upToCount: 1 << 20)
-                if let chunk, !chunk.isEmpty {
-                    if !writeAll(chunk, out: outBox) {
-                        shouldContinue = false
-                        DispatchQueue.main.async {
-                            log("Output stream interrupted, aborting upload")
-                        }
-                        o.close()
-                        return false
-                    }
-                    return true
-                }
-                return false
-            }) {}
-            if !shouldContinue {
-                o.close()
-                return
-            }
-        } catch {
-            o.close()
-            return
-        }
-
-        guard writeAll(tail, out: outBox) else {
-            o.close()
-            DispatchQueue.main.async {
-                log("Output stream interrupted, aborting upload")
-            }
-            return
-        }
-    }
-    return (input, output)
 }

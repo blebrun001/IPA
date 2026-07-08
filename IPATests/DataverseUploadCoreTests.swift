@@ -78,4 +78,43 @@ final class DataverseUploadCoreTests: XCTestCase {
         XCTAssertEqual(first.checksum, "abc123")
         XCTAssertEqual(first.checksumType?.uppercased(), "MD5")
     }
+
+    func testDuplicateIndexMatchesPathSizeAndChecksum() {
+        let files = [
+            DVExistingFile(filename: "File.TXT",
+                           directoryLabel: "/Folder/",
+                           filesize: 42,
+                           checksum: "ABC123",
+                           checksumType: "MD5")
+        ]
+        let index = DataverseDuplicateIndex(files: files)
+
+        XCTAssertEqual(DataverseDuplicateIndex.pathKey(directoryLabel: "folder", filename: "file.txt"), "folder/file.txt")
+        XCTAssertTrue(index.canMatchChecksums)
+        XCTAssertEqual(index.match(pathKey: "folder/file.txt", size: 42, checksum: nil), .pathAndSize)
+        XCTAssertEqual(index.match(pathKey: "folder/file.txt", size: 7, checksum: "abc123"), .pathAndChecksum)
+        XCTAssertEqual(index.match(pathKey: "folder/file.txt", size: 7, checksum: "missing"), .none)
+    }
+
+    func testRetryPolicyClassifiesTransientErrors() {
+        XCTAssertTrue(UploadRetryPolicy.isTransient(URLError(.timedOut)))
+        XCTAssertTrue(UploadRetryPolicy.isTransient(URLError(.networkConnectionLost)))
+        XCTAssertTrue(UploadRetryPolicy.isTransient(POSIXError(.EPIPE)))
+        XCTAssertFalse(UploadRetryPolicy.isTransient(URLError(.badURL)))
+        XCTAssertFalse(UploadRetryPolicy.isTransient(DVError.badStatusCode(400)))
+    }
+
+    func testMultipartPartsIncludeDirectoryAndFileFields() throws {
+        let parts = MultipartBodyStream.parts(boundary: "boundary",
+                                              fileName: "model.obj",
+                                              directoryLabel: "folder/subfolder")
+        let head = String(decoding: parts.head, as: UTF8.self)
+        let tail = String(decoding: parts.tail, as: UTF8.self)
+
+        XCTAssertTrue(head.contains("--boundary\r\n"))
+        XCTAssertTrue(head.contains("name=\"directoryLabel\""))
+        XCTAssertTrue(head.contains("folder/subfolder"))
+        XCTAssertTrue(head.contains("name=\"file\"; filename=\"model.obj\""))
+        XCTAssertEqual(tail, "\r\n--boundary--\r\n")
+    }
 }
