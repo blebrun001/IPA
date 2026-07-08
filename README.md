@@ -73,6 +73,6 @@ The active language can be changed at runtime from the toolbar globe button. Swi
 This work is part of the *Esqueletos en línea* project led by Dr. Palmira Saladié (IPHES-CERCA), funded by the María de Guzmán programme of the Fundación Española para la Ciencia y la Tecnología.
 
 ## License
-Licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License.
+Licensed under the GNU General Public License, Version 3, 29 June 2007.
 
-Full text: <https://creativecommons.org/licenses/by-nc/4.0/>
+See `LICENSE` for the full license text.
