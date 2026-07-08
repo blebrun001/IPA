@@ -135,7 +135,7 @@ struct DataverseUploadView<Settings: SettingsProviding>: View where Settings: Ob
 
     private var uploadOptionsGroup: some View {
         GroupBox("Upload Options") {
-            SectionCaption(text: NSLocalizedString("Control filtering, retries, and cache refreshes before IPA talks to Dataverse.", comment: "Upload options help text"))
+            SectionCaption(text: NSLocalizedString("Control filtering, retries, and cache refreshes before the app talks to Dataverse.", comment: "Upload options help text"))
             Grid(alignment: .leading, horizontalSpacing: 12, verticalSpacing: 10) {
                 GridRow {
                     Text("Exclude regex")
@@ -196,7 +196,7 @@ struct DataverseUploadView<Settings: SettingsProviding>: View where Settings: Ob
 
     private var selectionSummaryGroup: some View {
         GroupBox("Selection & Summary") {
-            SectionCaption(text: NSLocalizedString("Review the staged files and the command that IPA will run.", comment: "Selection help text"))
+            SectionCaption(text: NSLocalizedString("Review the staged files and the command that the app will run.", comment: "Selection help text"))
             VStack(alignment: .leading, spacing: 16) {
                 FileListView(items: $state.items)
                 Divider()
@@ -266,7 +266,7 @@ struct DataverseUploadView<Settings: SettingsProviding>: View where Settings: Ob
 
     private var liveLogGroup: some View {
         GroupBox("Live Log") {
-            SectionCaption(text: NSLocalizedString("Keep IPA in the foreground to follow retries and byte counters in real time.", comment: "Log help text"))
+            SectionCaption(text: NSLocalizedString("Keep the app in the foreground to follow retries and byte counters in real time.", comment: "Log help text"))
             LogView(entries: state.logEntries,
                     retryMessage: state.retryMessage,
                     cancelMessage: "")

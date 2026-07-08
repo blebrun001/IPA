@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "42CCC0F22D55182C0037123A"
-               BuildableName = "IPA.app"
+               BuildableName = "Integrated Photogrammetry Assistant.app"
                BlueprintName = "IPA"
                ReferencedContainer = "container:IPA.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42CCC0F22D55182C0037123A"
-            BuildableName = "IPA.app"
+            BuildableName = "Integrated Photogrammetry Assistant.app"
             BlueprintName = "IPA"
             ReferencedContainer = "container:IPA.xcodeproj">
          </BuildableReference>
@@ -67,7 +67,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42CCC0F22D55182C0037123A"
-            BuildableName = "IPA.app"
+            BuildableName = "Integrated Photogrammetry Assistant.app"
             BlueprintName = "IPA"
             ReferencedContainer = "container:IPA.xcodeproj">
          </BuildableReference>
@@ -84,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42CCC0F22D55182C0037123A"
-            BuildableName = "IPA.app"
+            BuildableName = "Integrated Photogrammetry Assistant.app"
             BlueprintName = "IPA"
             ReferencedContainer = "container:IPA.xcodeproj">
          </BuildableReference>

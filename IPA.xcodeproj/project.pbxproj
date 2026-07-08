@@ -24,7 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		42CCC0F32D55182C0037123A /* IPA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42CCC0F32D55182C0037123A /* Integrated Photogrammetry Assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Integrated Photogrammetry Assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CCC1042D55182D0037123A /* IPATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IPATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -84,7 +84,7 @@
 		42CCC0F42D55182C0037123A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				42CCC0F32D55182C0037123A /* IPA.app */,
+				42CCC0F32D55182C0037123A /* Integrated Photogrammetry Assistant.app */,
 				42CCC1042D55182D0037123A /* IPATests.xctest */,
 			);
 			name = Products;
@@ -112,7 +112,7 @@
 			packageProductDependencies = (
 			);
 			productName = IPA;
-			productReference = 42CCC0F32D55182C0037123A /* IPA.app */;
+			productReference = 42CCC0F32D55182C0037123A /* Integrated Photogrammetry Assistant.app */;
 			productType = "com.apple.product-type.application";
 		};
 		42CCC1032D55182D0037123A /* IPATests */ = {
@@ -422,7 +422,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = YES;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = IPA;
+				INFOPLIST_KEY_CFBundleDisplayName = "Integrated Photogrammetry Assistant";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -431,7 +431,8 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.bricelebrun.ipa;
-				PRODUCT_NAME = IPA;
+				PRODUCT_MODULE_NAME = IPA;
+				PRODUCT_NAME = "Integrated Photogrammetry Assistant";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -466,7 +467,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = YES;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = IPA;
+				INFOPLIST_KEY_CFBundleDisplayName = "Integrated Photogrammetry Assistant";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -475,7 +476,8 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.bricelebrun.ipa;
-				PRODUCT_NAME = IPA;
+				PRODUCT_MODULE_NAME = IPA;
+				PRODUCT_NAME = "Integrated Photogrammetry Assistant";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -496,7 +498,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IPA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IPA";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Integrated Photogrammetry Assistant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Integrated Photogrammetry Assistant";
 			};
 			name = Debug;
 		};
@@ -515,7 +517,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IPA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IPA";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Integrated Photogrammetry Assistant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Integrated Photogrammetry Assistant";
 			};
 			name = Release;
 		};

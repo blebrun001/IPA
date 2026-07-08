@@ -1,0 +1,72 @@
+name: Release macOS
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    name: Build unsigned macOS app
+    runs-on: macos-15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Build unsigned Release app
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project IPA.xcodeproj \
+            -scheme IPA \
+            -configuration Release \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+
+      - name: Package app
+        run: |
+          set -euo pipefail
+          APP_PATH="build/DerivedData/Build/Products/Release/Integrated Photogrammetry Assistant.app"
+          if [ ! -d "$APP_PATH" ]; then
+            echo "Expected app bundle not found at: $APP_PATH" >&2
+            find build/DerivedData/Build/Products -maxdepth 3 -type d -name "*.app" -print >&2
+            exit 1
+          fi
+
+          ASSET_NAME="Integrated-Photogrammetry-Assistant-macOS-${GITHUB_REF_NAME:-manual}.zip"
+          ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "$ASSET_NAME"
+          echo "ASSET_NAME=$ASSET_NAME" >> "$GITHUB_ENV"
+
+      - name: Write release notes
+        run: |
+          set -euo pipefail
+          cat > release-notes.md <<'EOF'
+          Integrated Photogrammetry Assistant macOS release.
+
+          This build is unsigned and not notarized. macOS Gatekeeper will warn before opening it.
+          EOF
+
+      - name: Create or update GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG_NAME="${GITHUB_REF_NAME}"
+          TITLE="Integrated Photogrammetry Assistant ${TAG_NAME}"
+
+          if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            gh release edit "$TAG_NAME" --title "$TITLE" --notes-file release-notes.md
+            gh release upload "$TAG_NAME" "$ASSET_NAME" --clobber
+          else
+            gh release create "$TAG_NAME" "$ASSET_NAME" --title "$TITLE" --notes-file release-notes.md
+          fi

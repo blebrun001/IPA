@@ -147,7 +147,7 @@ struct MainView: View {
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .opacity(0.5)
-                    Text(NSLocalizedString("Version 1.1.0", comment: "Application version in sidebar footer"))
+                    Text(NSLocalizedString("Version 1.0.0", comment: "Application version in sidebar footer"))
                         .font(.footnote)
                         .foregroundColor(.gray)
                     Text(NSLocalizedString("© 2025 Brice Lebrun", comment: "Application copyright"))

@@ -1606,7 +1606,7 @@
         }
       }
     },
-    "Control filtering, retries, and cache refreshes before IPA talks to Dataverse." : {
+    "Control filtering, retries, and cache refreshes before the app talks to Dataverse." : {
       "comment" : "Upload options help text"
     },
     "Copy Log" : {
@@ -3615,35 +3615,6 @@
         }
       }
     },
-    "IPA" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IPA"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IPA"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IPA"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IPA"
-          }
-        }
-      }
-    },
     "Isolate from environment" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3731,7 +3702,7 @@
         }
       }
     },
-    "Keep IPA in the foreground to follow retries and byte counters in real time." : {
+    "Keep the app in the foreground to follow retries and byte counters in real time." : {
       "comment" : "Log help text"
     },
     "L'application va redémarrer pour appliquer la langue." : {
@@ -5958,7 +5929,7 @@
         }
       }
     },
-    "Review the staged files and the command that IPA will run." : {
+    "Review the staged files and the command that the app will run." : {
       "comment" : "Selection help text"
     },
     "Rough" : {
@@ -8267,35 +8238,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version 1.0.0"
-          }
-        }
-      }
-    },
-    "Version 1.1.0" : {
-      "comment" : "Application version in sidebar footer\nSplash screen version number",
-      "localizations" : {
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versió 1.1.0"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version 1.1.0"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versión 1.1.0"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version 1.1.0"
           }
         }
       }

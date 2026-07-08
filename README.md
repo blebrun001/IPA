@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="IPA/Assets.xcassets/AppIcon.appiconset/IPA512.png" alt="IPA Logo" width="140" />
+  <img src="IPA/Assets.xcassets/AppIcon.appiconset/IPA512.png" alt="Integrated Photogrammetry Assistant logo" width="140" />
 </p>
 
 # Integrated Photogrammetry Assistant
 
-IPA is a macOS application developed at IPHES-CERCA by Brice Lebrun to streamline the production, scaling, organisation, and publication of osteological 3D datasets. The toolkit brings together photogrammetry automation, OBJ post-processing utilities, dataset preparation helpers, and Dataverse publishing tools inside a single interface.
+Integrated Photogrammetry Assistant is a macOS application developed at IPHES-CERCA by Brice Lebrun to streamline the production, scaling, organisation, and publication of osteological 3D datasets. The toolkit brings together photogrammetry automation, OBJ post-processing utilities, dataset preparation helpers, and Dataverse publishing tools inside a single interface.
 
 ## Key Capabilities
 - Photogrammetry capture orchestration with automated clean-up and optional texture compression.
@@ -14,7 +14,7 @@ IPA is a macOS application developed at IPHES-CERCA by Brice Lebrun to streamlin
 - Bone folder creation assistant backed by UBERON suggestions.
 
 ## Dataverse Upload Module
-The **Dataverse upload** tab (under *Dataset preparation*) is now a native IPA module. It shares credentials with the global settings screen and requires:
+The **Dataverse upload** tab (under *Dataset preparation*) is now a native Integrated Photogrammetry Assistant module. It shares credentials with the global settings screen and requires:
 
 - A Dataverse base URL (e.g. `https://demo.dataverse.org`).
 - An API key with write access to the target dataset.
@@ -31,7 +31,7 @@ The **Dataverse upload** tab (under *Dataset preparation*) is now a native IPA m
 - Security-scoped bookmarks are resolved for each dropped folder/file so the sandbox can read the content.
 - Duplicate detection runs both before and after each upload using the remote draft file list (path+size or path+checksum).
 - Progress shows the current file, byte-transfer text, and a console-style log with retry hints.
-- Direct uploads stream straight to the storage provider; if a file exceeds the provider limit or the server rejects the request, IPA switches to the multipart fallback automatically without losing progress.
+- Direct uploads stream straight to the storage provider; if a file exceeds the provider limit or the server rejects the request, Integrated Photogrammetry Assistant switches to the multipart fallback automatically without losing progress.
 - Practical limits follow the Dataverse deployment configuration (typical direct-upload size caps mirror the backing object store, while server-side multipart handles very large files but is constrained by HTTP timeouts).
 
 ## Project Layout
@@ -54,8 +54,13 @@ The **Dataverse upload** tab (under *Dataset preparation*) is now a native IPA m
 3. Select the `IPA` scheme and build/run on macOS.
 4. Provide the necessary Dataverse credentials under **Settings → General** before using upload features.
 
+## Releases
+Tagged versions matching `v*` are built by GitHub Actions as unsigned macOS release archives. The packaged app is named `Integrated Photogrammetry Assistant.app`.
+
+Because release builds are unsigned and not notarized, macOS Gatekeeper will warn before opening the downloaded app.
+
 ## Localization
-IPA ships with four fully translated interfaces:
+Integrated Photogrammetry Assistant ships with four fully translated interfaces:
 - English *(default UI language)*
 - French
 - Spanish

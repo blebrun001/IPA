@@ -27,10 +27,10 @@ final class DataverseUploadCoreTests: XCTestCase {
 
         defer { try? FileManager.default.removeItem(at: tempDir) }
 
-        let files = FileSystem.flattenFiles(from: [tempDir])
-        XCTAssertTrue(files.contains(fileA))
-        XCTAssertTrue(files.contains(fileB))
-        XCTAssertEqual(files.count, 2)
+        let filePaths = Set(FileSystem.flattenFiles(from: [tempDir]).map { $0.standardizedFileURL.path })
+        XCTAssertTrue(filePaths.contains(fileA.standardizedFileURL.path))
+        XCTAssertTrue(filePaths.contains(fileB.standardizedFileURL.path))
+        XCTAssertEqual(filePaths.count, 2)
     }
 
     func testDataverseDirectUploadURLConstruction() throws {
